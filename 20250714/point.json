@@ -1,0 +1,362 @@
+[
+  {
+    "depth": 1,
+    "id": 59020,
+    "name": "信息与信息技术基础",
+    "parentId": 0
+  },
+  {
+    "depth": 1,
+    "id": 59023,
+    "name": "网络基础与应用",
+    "parentId": 0
+  },
+  {
+    "depth": 1,
+    "id": 59026,
+    "name": "文件管理",
+    "parentId": 0
+  },
+  {
+    "depth": 1,
+    "id": 59029,
+    "name": "文字处理",
+    "parentId": 0
+  },
+  {
+    "depth": 1,
+    "id": 59033,
+    "name": "图像处理",
+    "parentId": 0
+  },
+  {
+    "depth": 1,
+    "id": 59036,
+    "name": "多媒体作品制作",
+    "parentId": 0
+  },
+  {
+    "depth": 1,
+    "id": 59040,
+    "name": "动画制作",
+    "parentId": 0
+  },
+  {
+    "depth": 1,
+    "id": 59045,
+    "name": "电子表格",
+    "parentId": 0
+  },
+  {
+    "depth": 1,
+    "id": 59052,
+    "name": "计算机基础",
+    "parentId": 0
+  },
+  {
+    "depth": 1,
+    "id": 59056,
+    "name": "网站的制作",
+    "parentId": 0
+  },
+  {
+    "depth": 1,
+    "id": 68940,
+    "name": "演示文稿制作PowerPoint",
+    "parentId": 0
+  },
+  {
+    "depth": 1,
+    "id": 68941,
+    "name": "智能机器人",
+    "parentId": 0
+  },
+  {
+    "depth": 1,
+    "id": 68942,
+    "name": "算法与编程",
+    "parentId": 0
+  },
+  {
+    "depth": 2,
+    "id": 59021,
+    "name": "信息的概念及其基本特征",
+    "parentId": 59020
+  },
+  {
+    "depth": 2,
+    "id": 59022,
+    "name": "信息技术的应用",
+    "parentId": 59020
+  },
+  {
+    "depth": 2,
+    "id": 59024,
+    "name": "网络基础知识",
+    "parentId": 59023
+  },
+  {
+    "depth": 2,
+    "id": 59025,
+    "name": "网络应用",
+    "parentId": 59023
+  },
+  {
+    "depth": 2,
+    "id": 59027,
+    "name": "文件的概念、组成、类型",
+    "parentId": 59026
+  },
+  {
+    "depth": 2,
+    "id": 59028,
+    "name": "文件管理方法",
+    "parentId": 59026
+  },
+  {
+    "depth": 2,
+    "id": 59030,
+    "name": "Word基本操作",
+    "parentId": 59029
+  },
+  {
+    "depth": 2,
+    "id": 59031,
+    "name": "Word版面编排",
+    "parentId": 59029
+  },
+  {
+    "depth": 2,
+    "id": 59032,
+    "name": "Word表格处理",
+    "parentId": 59029
+  },
+  {
+    "depth": 2,
+    "id": 59034,
+    "name": "Photoshop基本操作",
+    "parentId": 59033
+  },
+  {
+    "depth": 2,
+    "id": 59035,
+    "name": "Photoshop图像编辑",
+    "parentId": 59033
+  },
+  {
+    "depth": 2,
+    "id": 59037,
+    "name": "声音的获取与加工",
+    "parentId": 59036
+  },
+  {
+    "depth": 2,
+    "id": 59038,
+    "name": "视频的获取与加工",
+    "parentId": 59036
+  },
+  {
+    "depth": 2,
+    "id": 59039,
+    "name": "制作多媒体作品",
+    "parentId": 59036
+  },
+  {
+    "depth": 2,
+    "id": 59041,
+    "name": "Flash基础知识",
+    "parentId": 59040
+  },
+  {
+    "depth": 2,
+    "id": 59042,
+    "name": "Flash基本操作",
+    "parentId": 59040
+  },
+  {
+    "depth": 2,
+    "id": 59043,
+    "name": "Flash编辑设置",
+    "parentId": 59040
+  },
+  {
+    "depth": 2,
+    "id": 59044,
+    "name": "Flash动画创建",
+    "parentId": 59040
+  },
+  {
+    "depth": 2,
+    "id": 59046,
+    "name": "Excel基本概念与功能",
+    "parentId": 59045
+  },
+  {
+    "depth": 2,
+    "id": 59047,
+    "name": "数据编辑",
+    "parentId": 59045
+  },
+  {
+    "depth": 2,
+    "id": 59048,
+    "name": "表格编辑于修饰",
+    "parentId": 59045
+  },
+  {
+    "depth": 2,
+    "id": 59049,
+    "name": "工作表编辑",
+    "parentId": 59045
+  },
+  {
+    "depth": 2,
+    "id": 59050,
+    "name": "数据统计",
+    "parentId": 59045
+  },
+  {
+    "depth": 2,
+    "id": 59051,
+    "name": "图表",
+    "parentId": 59045
+  },
+  {
+    "depth": 2,
+    "id": 59053,
+    "name": "计算机工作原理",
+    "parentId": 59052
+  },
+  {
+    "depth": 2,
+    "id": 59054,
+    "name": "计算机系统",
+    "parentId": 59052
+  },
+  {
+    "depth": 2,
+    "id": 59055,
+    "name": "安全使用计算机",
+    "parentId": 59052
+  },
+  {
+    "depth": 2,
+    "id": 59057,
+    "name": "网站的规划与设计",
+    "parentId": 59056
+  },
+  {
+    "depth": 2,
+    "id": 59058,
+    "name": "素材的收集与加工",
+    "parentId": 59056
+  },
+  {
+    "depth": 2,
+    "id": 59059,
+    "name": "Frontpage网页制作",
+    "parentId": 59056
+  },
+  {
+    "depth": 2,
+    "id": 59060,
+    "name": "网站的发布",
+    "parentId": 59056
+  },
+  {
+    "depth": 2,
+    "id": 68956,
+    "name": "文稿的规划与设计",
+    "parentId": 68940
+  },
+  {
+    "depth": 2,
+    "id": 68957,
+    "name": "素材的搜集与添加",
+    "parentId": 68940
+  },
+  {
+    "depth": 2,
+    "id": 68958,
+    "name": "添加演示效果",
+    "parentId": 68940
+  },
+  {
+    "depth": 2,
+    "id": 68944,
+    "name": " 生活与算法",
+    "parentId": 68942
+  },
+  {
+    "depth": 2,
+    "id": 68945,
+    "name": " 算法与流程图",
+    "parentId": 68942
+  },
+  {
+    "depth": 2,
+    "id": 68946,
+    "name": "枚举法",
+    "parentId": 68942
+  },
+  {
+    "depth": 2,
+    "id": 68947,
+    "name": "解析法",
+    "parentId": 68942
+  },
+  {
+    "depth": 2,
+    "id": 68948,
+    "name": "递归法",
+    "parentId": 68942
+  },
+  {
+    "depth": 2,
+    "id": 68949,
+    "name": "排序",
+    "parentId": 68942
+  },
+  {
+    "depth": 2,
+    "id": 68950,
+    "name": "查询",
+    "parentId": 68942
+  },
+  {
+    "depth": 2,
+    "id": 68943,
+    "name": "VB编程",
+    "parentId": 68942
+  },
+  {
+    "depth": 2,
+    "id": 68951,
+    "name": " 顺序结构",
+    "parentId": 68942
+  },
+  {
+    "depth": 2,
+    "id": 68952,
+    "name": " 分支结构",
+    "parentId": 68942
+  },
+  {
+    "depth": 2,
+    "id": 68953,
+    "name": " 循环结构",
+    "parentId": 68942
+  },
+  {
+    "depth": 2,
+    "id": 68954,
+    "name": "可视化编程",
+    "parentId": 68942
+  },
+  {
+    "depth": 2,
+    "id": 68955,
+    "name": "模块化编程",
+    "parentId": 68942
+  }
+]

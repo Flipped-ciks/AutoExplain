@@ -1,0 +1,51 @@
+{
+  "summary": {
+    "total": 2,
+    "full_match": 0,
+    "partial_match": 0,
+    "full_match_rate": "0.00%",
+    "top2_match_rate": "0.00%"
+  },
+  "details": [
+    {
+      "stem": "下列属于系统软件的是（） Windows Excel Photoshop Word",
+      "knowledgePointIds": [
+        59054
+      ],
+      "knowledgePointNames": [
+        "(59054)计算机系统"
+      ],
+      "predicted": [
+        {
+          "id": 59046,
+          "name": "Excel基本概念与功能"
+        },
+        {
+          "id": 59030,
+          "name": "Word基本操作"
+        }
+      ],
+      "match": "none"
+    },
+    {
+      "stem": "以下流程图片段中，属于循环结构的是（） 开始→处理A→判断→结束 开始→判断→处理A→返回判断 开始→处理A→处理B→结束 开始→判断→结束",
+      "knowledgePointIds": [
+        68945
+      ],
+      "knowledgePointNames": [
+        "(68945) 算法与流程图"
+      ],
+      "predicted": [
+        {
+          "id": 68953,
+          "name": " 循环结构"
+        },
+        {
+          "id": 68951,
+          "name": " 顺序结构"
+        }
+      ],
+      "match": "none"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+[
+    {
+        "depth": 1,
+        "id": 59020,
+        "name": "信息与信息技术基础",
+        "parentId": 0
+    },
+    {
+        "depth": 1,
+        "id": 59023,
+        "name": "网络基础与应用",
+        "parentId": 0
+    },
+    {
+        "depth": 1,
+        "id": 59026,
+        "name": "文件管理",
+        "parentId": 0
+    },
+    {
+        "depth": 1,
+        "id": 59029,
+        "name": "文字处理",
+        "parentId": 0
+    },
+    {
+        "depth": 1,
+        "id": 59033,
+        "name": "图像处理",
+        "parentId": 0
+    },
+    {
+        "depth": 1,
+        "id": 59036,
+        "name": "多媒体作品制作",
+        "parentId": 0
+    },
+    {
+        "depth": 1,
+        "id": 59040,
+        "name": "动画制作",
+        "parentId": 0
+    },
+    {
+        "depth": 1,
+        "id": 59045,
+        "name": "电子表格",
+        "parentId": 0
+    },
+    {
+        "depth": 1,
+        "id": 59052,
+        "name": "计算机基础",
+        "parentId": 0
+    },
+    {
+        "depth": 1,
+        "id": 59056,
+        "name": "网站的制作",
+        "parentId": 0
+    },
+    {
+        "depth": 1,
+        "id": 68940,
+        "name": "演示文稿制作PowerPoint",
+        "parentId": 0
+    },
+    {
+        "depth": 1,
+        "id": 68941,
+        "name": "智能机器人",
+        "parentId": 0
+    },
+    {
+        "depth": 1,
+        "id": 68942,
+        "name": "算法与编程",
+        "parentId": 0
+    }
+]

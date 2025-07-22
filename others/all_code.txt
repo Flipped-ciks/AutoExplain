@@ -1,0 +1,2409 @@
+# 合并文件: copytag.py, count.py, doubao_blank.py, doubao_blank_review.py, doubao_choice.py, doubao_choice_review.py, doubao_judge.py, doubao_judge_review.py, doubao_short.py, doubao_short_review.py, getbornwithoutanswer.py, getdataset.py, getdetail_blank.py, getdetail_blank_review.py, getdetail_choice.py, getdetail_choice_review.py, getdetail_choice_withexplain.py, getdetail_judge.py, getdetail_judge_review.py, getdetail_short.py, getdetail_short_review.py, gptapi_blank.py, gptapi_choice.py, gptapi_judge.py, gptapi_short.py, hebing.py, inferCatlog.py, judgetype.py, login.py, login_qrcode.py, main.py, maketag.py, pickque.py, pickque_review.py, prePointIds.py, putanswer.py, puttag.py, querytask.py, querytask_review.py, structure.py, submit.py, submit_review.py, tempCodeRunnerFile.py, trainmodel.py
+
+# ==== 开始: copytag.py ====
+
+import requests
+import certifi
+import prePointIds
+import inferCatlog
+
+
+# 由于有两项，年份以及来源是从get请求获取的，因此我们在发put请求之前，先拉去一下这两个参数
+
+def main(sour_qid, dest_qid , cookies, type):
+
+    url = "https://qbm.xkw.com/console/questions/properties/" + str(sour_qid)
+    response = requests.get(url, cookies=cookies ,verify=certifi.where())
+    json_sour = response.json()
+
+    url = "https://qbm.xkw.com/console/questions/properties/" + str(dest_qid)
+    response = requests.get(url, cookies=cookies ,verify=certifi.where())
+    json_dest = response.json()
+
+    data = {}
+    data['year'] = json_dest['year']                                                 # 年份由get请求获取
+    data['source'] = json_dest['source']                                             # 来源由get请求获取
+    data['typeId'] = str(json_dest['courseId']) + type                               # 题型由参数传入
+    data['difficulty'] = json_sour['difficulty']                                      # 难度默认值
+    data['tagIds'] = ['1']                                                           # 试题分类默认值
+    data['knowledgePointIds'] = json_sour['knowledgePointIds']                        # 试题知识点根据学科网接口获取
+    data['catalogIds'] = json_sour['catalogIds']                                      # 章节目录根据学科网接口获取
+
+    url = "https://qbm.xkw.com/console/questions/properties/" + str(dest_qid)
+    requests.put(url, cookies=cookies, json=data, verify=certifi.where())
+# ==== 结束: copytag.py ====
+
+# ==== 开始: count.py ====
+
+import os
+
+# 支持的代码文件类型
+code_extensions = {'.py', '.java', '.cpp', '.c', '.js', '.html', '.css', '.php', '.rb', '.go'}
+
+def count_lines_in_file(file_path):
+    """统计单个文件的行数"""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            return sum(1 for _ in file)
+    except (UnicodeDecodeError, IOError):
+        # 跳过不能读取的文件
+        return 0
+
+def count_lines_in_directory(directory, exclude_file):
+    """递归统计目录中的代码行数"""
+    total_lines = 0
+    for root, _, files in os.walk(directory):
+        for file in files:
+            if os.path.splitext(file)[1] in code_extensions:
+                file_path = os.path.join(root, file)
+                # 排除自身
+                if os.path.abspath(file_path) != os.path.abspath(exclude_file):
+                    total_lines += count_lines_in_file(file_path)
+    return total_lines
+
+    current_directory = "xkwautosolve"
+    this_file = __file__  # 当前脚本文件
+    total_lines = count_lines_in_directory(current_directory, "xkwautosolve\count.py")
+    print(f"当前目录 '{current_directory}' 下共有代码行数（不含此脚本）: {total_lines}")
+
+# ==== 结束: count.py ====
+
+# ==== 开始: doubao_blank.py ====
+
+from volcenginesdkarkruntime import Ark
+import re
+
+client = Ark(
+    base_url="https://ark.cn-beijing.volces.com/api/v3",
+)
+
+def main(question):
+
+    prompt = f"""
+    这是一道填空题：
+    题目：{question['stem']}
+    答案：{question['answer']}
+    请你严格按照以下格式对题目进行解析：
+    本题考查[知识点]。[给出这道题目的解析]。故答案为：[XXXX]。
+    注意：知识点为没有形容词修饰的名词形式，聚焦核心概念。解析内容不要包含总结性表述。
+    如果有多个答案，将答案用"、"隔开。
+    输出时请删除所有[]占位符，仅保留有效内容。
+    """
+
+    # prompt = f"""
+    # 这是一道填空题：
+    # 题目：{question['stem']}
+    # 答案：{question['answer']}
+    # 请你严格按照以下格式对题目进行解析：
+    # 本题考查[最精炼的知识点名词，聚焦核心概念]。[给出这道题目的解析]。故答案为：[XXXX]。
+    # 注意：知识点为名词形式，务必精炼概括核心要点，解析内容不要包含总结性表述。
+    # 如果有多个答案，将答案用"、"隔开
+    # """
+
+    completion = client.chat.completions.create(
+        model="ep-20241202163303-l2gcl",
+        messages = [
+            {"role": "system", "content": "你是一个信息技术学科的老师，工作就是给信息技术学科的试题写符合标准的解析"},
+            {"role": "user", "content": prompt},
+        ],
+    )
+
+    content = completion.choices[0].message.content
+
+    # 1. 清除格式化符号（例如 `**`）
+    content = re.sub(r'\*\*([^*]+)\*\*', r'\1', content)
+
+    # 2. 移除所有换行符和多余的空格
+    content = re.sub(r'\s+', ' ', content)
+
+    content = re.sub(r"[\[\]\']", "", content)
+
+    # 3. 最终文本结果
+    cleaned_content = content.strip()
+
+    # 返回清理后的文本
+    return cleaned_content
+# ==== 结束: doubao_blank.py ====
+
+# ==== 开始: doubao_blank_review.py ====
+
+
+client = Ark(
+    base_url="https://ark.cn-beijing.volces.com/api/v3",
+)
+
+def main(question):
+
+    prompt = f"""
+    这是一道填空题：
+    题干：{question['stem']}
+    答案：{question['answer']}
+    解析：{question['explanation']}
+    知识点：{question['knowledgePointNames']}
+    章节标签：{question['name']}
+    请你按照以下要求对该题目所有部分进行审核：
+    1. 检查题干，题型，答案，解析是否出现标点符号以及错别字等问题；
+    2. 检查解析是否正确，以及英文与中文之间不允许出现空格。
+    3. 检查知识点是否合理。
+    4. 检查章节标签是否合理。
+    5. 审核要严格，不能任何错误。
+    审核如果通过，则直接返回通过即可。否则，返回错误原因。
+    """
+
+    # prompt = f"""
+    # 这是一道填空题：
+    # 题目：{question['stem']}
+    # 答案：{question['answer']}
+    # 请你严格按照以下格式对题目进行解析：
+    # 本题考查[最精炼的知识点名词，聚焦核心概念]。[给出这道题目的解析]。故答案为：[XXXX]。
+    # 注意：知识点为名词形式，务必精炼概括核心要点，解析内容不要包含总结性表述。
+    # 如果有多个答案，将答案用"、"隔开
+    # """
+
+    completion = client.chat.completions.create(
+        model="ep-20241202163303-l2gcl",
+        messages = [
+            {"role": "system", "content": "你是一个信息技术学科的老师，工作就是给信息技术学科的试题写符合标准的解析"},
+            {"role": "user", "content": prompt},
+        ],
+    )
+
+    content = completion.choices[0].message.content
+
+    # 1. 清除格式化符号（例如 `**`）
+    content = re.sub(r'\*\*([^*]+)\*\*', r'\1', content)
+
+    # 2. 移除所有换行符和多余的空格
+    content = re.sub(r'\s+', ' ', content)
+
+    content = re.sub(r"[\[\]\']", "", content)
+
+    # 3. 最终文本结果
+    cleaned_content = content.strip()
+
+    # 返回清理后的文本
+    return cleaned_content
+# ==== 结束: doubao_blank_review.py ====
+
+# ==== 开始: doubao_choice.py ====
+
+
+client = Ark(
+    base_url="https://ark.cn-beijing.volces.com/api/v3",
+)
+
+def main(question):
+
+    prompt = f"""
+    这是一道选择题：
+    题目：{question['stem']}
+    选项：
+    {', '.join([f"{key}. {value}" for key, value in question['options'].items()])}
+    答案：{question['answer']}
+    请你严格按照以下格式对题目进行解析：
+    本题考查[最精炼的知识点名词，聚焦核心概念]。[给出这道题目的解析]。故答案为：[A/B/C/D]。
+    注意：知识点为没有形容词修饰的名词形式。解析内容不要包含总结性表述。
+    如果答案有多个选项用、隔开。
+    输出时请删除所有[]占位符，仅保留有效内容。
+    """
+
+    completion = client.chat.completions.create(
+        model="ep-20241202163303-l2gcl",
+        messages = [
+            {"role": "system", "content": "你是一个信息技术学科的老师，工作就是给信息技术学科的试题写符合标准的解析"},
+            {"role": "user", "content": prompt},
+        ],
+    )
+
+    content = completion.choices[0].message.content
+
+    # 1. 清除格式化符号（例如 `**`）
+    content = re.sub(r'\*\*([^*]+)\*\*', r'\1', content)
+
+    # 2. 移除所有换行符和多余的空格
+    content = re.sub(r'\s+', ' ', content)
+
+    # 3. 最终文本结果
+    cleaned_content = content.strip()
+
+    # 返回清理后的文本
+    return cleaned_content
+# ==== 结束: doubao_choice.py ====
+
+# ==== 开始: doubao_choice_review.py ====
+
+
+client = Ark(
+    base_url="https://ark.cn-beijing.volces.com/api/v3",
+)
+
+def main(question):
+
+    prompt = f"""
+    这是一道选择题：
+    题目：{question['stem']}
+    选项：
+    {', '.join([f"{key}. {value}" for key, value in question['options'].items()])}
+    答案：{question['answer']}
+    解析：{question['explanation']}
+    知识点：{question['knowledgePointNames']}
+    章节标签：{question['name']}
+    请你按照以下要求对该题目所有部分进行审核：
+    1. 检查题干，题型，答案，解析是否出现标点符号以及错别字等问题；
+    2. 检查解析是否正确，各个选项解析的正确或者错误，以及英文与中文之间不允许出现空格。
+    3. 检查知识点是否合理。
+    4. 检查章节标签是否合理。
+    5. 审核要严格，不能任何错误。
+    审核如果通过，则直接返回通过即可。否则，返回错误原因。
+    """
+
+    completion = client.chat.completions.create(
+        model="ep-20241202163303-l2gcl",
+        messages = [
+            {"role": "system", "content": "你是一个信息技术学科的老师，工作就是给信息技术学科的试题写符合标准的解析"},
+            {"role": "user", "content": prompt},
+        ],
+    )
+
+    content = completion.choices[0].message.content
+
+    # 1. 清除格式化符号（例如 `**`）
+    content = re.sub(r'\*\*([^*]+)\*\*', r'\1', content)
+
+    # 2. 移除所有换行符和多余的空格
+    content = re.sub(r'\s+', ' ', content)
+
+    # 3. 最终文本结果
+    cleaned_content = content.strip()
+
+    # 返回清理后的文本
+    return cleaned_content
+# ==== 结束: doubao_choice_review.py ====
+
+# ==== 开始: doubao_judge.py ====
+
+
+client = Ark(
+    base_url="https://ark.cn-beijing.volces.com/api/v3",
+)
+
+def main(question):
+
+    prompt = f"""
+    这是一道判断题：
+    题目：{question['stem']}
+    答案：{question['answer']}
+    请你严格按照以下格式对题目进行解析：
+    本题考查[知识点名词]。[给出这道题目的解析]。故说法[正确/错误]。
+    注意：知识点为没有形容词修饰的名词形式。解析内容不要包含总结性表述。
+    输出时请删除所有[]占位符，仅保留有效内容。
+    """
+
+    completion = client.chat.completions.create(
+        model="ep-20241202163303-l2gcl",
+        messages = [
+            {"role": "system", "content": "你是一个信息技术学科的老师，工作就是给信息技术学科的试题写符合标准的解析"},
+            {"role": "user", "content": prompt},
+        ],
+    )
+
+    content = completion.choices[0].message.content
+
+    # 1. 清除格式化符号（例如 `**`）
+    content = re.sub(r'\*\*([^*]+)\*\*', r'\1', content)
+
+    # 2. 移除所有换行符和多余的空格
+    content = re.sub(r'\s+', ' ', content)
+
+    # 3. 最终文本结果
+    cleaned_content = content.strip()
+
+    # 返回清理后的文本
+    return cleaned_content
+# ==== 结束: doubao_judge.py ====
+
+# ==== 开始: doubao_judge_review.py ====
+
+
+client = Ark(
+    base_url="https://ark.cn-beijing.volces.com/api/v3",
+)
+
+def main(question):
+
+    prompt = f"""
+    这是一道判断题：
+    题干：{question['stem']}
+    答案：{question['answer']}
+    解析：{question['explanation']}
+    知识点：{question['knowledgePointNames']}
+    章节标签：{question['name']}
+    请你按照以下要求对该题目所有部分进行审核：
+    1. 检查题干，题型，答案，解析是否出现标点符号以及错别字等问题；
+    2. 检查解析是否正确，以及英文与中文之间不允许出现空格。
+    3. 检查知识点是否合理。
+    4. 检查章节标签是否合理。
+    5. 审核要严格，不能任何错误。
+    审核如果通过，则直接返回通过即可。否则，返回错误原因。
+    """
+
+    completion = client.chat.completions.create(
+        model="ep-20241202163303-l2gcl",
+        messages = [
+            {"role": "system", "content": "你是一个信息技术学科的老师，工作就是审核信息技术学科的试题答案，知识点以及章节标签"},
+            {"role": "user", "content": prompt},
+        ],
+    )
+
+    content = completion.choices[0].message.content
+
+    # 1. 清除格式化符号（例如 `**`）
+    content = re.sub(r'\*\*([^*]+)\*\*', r'\1', content)
+
+    # 2. 移除所有换行符和多余的空格
+    content = re.sub(r'\s+', ' ', content)
+
+    # 3. 最终文本结果
+    cleaned_content = content.strip()
+
+    # 返回清理后的文本
+    return cleaned_content
+# ==== 结束: doubao_judge_review.py ====
+
+# ==== 开始: doubao_short.py ====
+
+
+client = Ark(
+    base_url="https://ark.cn-beijing.volces.com/api/v3",
+)
+
+def main(question):
+
+    prompt = f"""
+    这是一道简答题：
+    题目：{question['stem']}
+    答案：{question['answer']}
+    请你严格按照以下格式对题目进行解析：
+    本题考查[最精炼的知识点名词，聚焦核心概念]。[给出这道题目的解析]。
+    注意：知识点为没有形容词修饰的名词形式。解析内容不要包含总结性表述。
+    输出时请删除所有[]占位符，仅保留有效内容。
+    """
+
+    # 原版，由于后面可以会有无答案的情况，因此，我们继续进行prompt调优。
+    # prompt = f"""
+    # 这是一道简答题：
+    # 题目：{question['stem']}
+    # 答案：{question['answer']}
+    # 请你严格按照以下格式对题目进行解析：
+    # 本题考查[知识点名词]。[分析这道题目为什么是这个答案]。
+    # 注意：知识点为名词形式，简要精炼，分析内容不要包含总结性表述。
+    # """
+
+    completion = client.chat.completions.create(
+        model="ep-20241202163303-l2gcl",
+        messages = [
+            {"role": "system", "content": "你是一个信息技术学科的老师，工作就是给试题写符合标准的解析"},
+            {"role": "user", "content": prompt},
+        ],
+    )
+
+    content = completion.choices[0].message.content
+
+    # 1. 清除格式化符号（例如 `**`）
+    content = re.sub(r'\*\*([^*]+)\*\*', r'\1', content)
+
+    # 2. 移除所有换行符和多余的空格
+    content = re.sub(r'\s+', ' ', content)
+
+    # 3. 删除所有的[]
+    # content = re.sub(r'\[\]', '', content)
+
+    # 3. 最终文本结果
+    cleaned_content = content.strip()
+
+    # 返回清理后的文本
+    return cleaned_content
+# ==== 结束: doubao_short.py ====
+
+# ==== 开始: doubao_short_review.py ====
+
+
+client = Ark(
+    base_url="https://ark.cn-beijing.volces.com/api/v3",
+)
+
+def main(question):
+
+    prompt = f"""
+    这是一道简答题：
+    题目：{question['stem']}
+    答案：{question['answer']}
+    解析：{question['explanation']}
+    知识点：{question['knowledgePointNames']}
+    章节标签：{question['name']}
+    请你按照以下要求对该题目所有部分进行审核：
+    1. 检查题干，题型，答案，解析是否出现标点符号以及错别字等问题；
+    2. 检查解析是否正确，以及英文与中文之间不允许出现空格。
+    3. 检查知识点是否合理。
+    4. 检查章节标签是否合理。
+    5. 审核要严格，不能任何错误。
+    审核如果通过，则直接返回通过即可。否则，返回错误原因。
+    """
+
+    # 原版，由于后面可以会有无答案的情况，因此，我们继续进行prompt调优。
+    # prompt = f"""
+    # 这是一道简答题：
+    # 题目：{question['stem']}
+    # 答案：{question['answer']}
+    # 请你严格按照以下格式对题目进行解析：
+    # 本题考查[知识点名词]。[分析这道题目为什么是这个答案]。
+    # 注意：知识点为名词形式，简要精炼，分析内容不要包含总结性表述。
+    # """
+
+    completion = client.chat.completions.create(
+        model="ep-20241202163303-l2gcl",
+        messages = [
+            {"role": "system", "content": "你是一个信息技术学科的老师，工作就是给试题写符合标准的解析"},
+            {"role": "user", "content": prompt},
+        ],
+    )
+
+    content = completion.choices[0].message.content
+
+    # 1. 清除格式化符号（例如 `**`）
+    content = re.sub(r'\*\*([^*]+)\*\*', r'\1', content)
+
+    # 2. 移除所有换行符和多余的空格
+    content = re.sub(r'\s+', ' ', content)
+
+    # 3. 删除所有的[]
+    # content = re.sub(r'\[\]', '', content)
+
+    # 3. 最终文本结果
+    cleaned_content = content.strip()
+
+    # 返回清理后的文本
+    return cleaned_content
+# ==== 结束: doubao_short_review.py ====
+
+# ==== 开始: getbornwithoutanswer.py ====
+
+
+def main(qid, cookies):
+    
+    url = "https://qbm.xkw.com/console/questions/"+ str(qid) +"/detail"
+
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+
+    json_str = response.json()
+
+    return json_str['bornWithoutAnswer']
+# ==== 结束: getbornwithoutanswer.py ====
+
+# ==== 开始: getdataset.py ====
+
+import judgetype
+import xkwautosolve.getdetail_choice_withexplain as getdetail_choice_withexplain
+import gptapi_choice
+import pymysql
+import json
+from datetime import datetime, timedelta
+
+db_config = {
+    "host": "localhost",
+    "user": "root",
+    "password": "abc123",
+    "database": "xkwdatabase",
+    "charset": "utf8mb4"
+}
+
+# 创建数据库连接
+def connect_to_database():
+    try:
+        connection = pymysql.connect(**db_config)
+        print("Database connection established.")
+        return connection
+    except pymysql.MySQLError as e:
+        print(f"Error connecting to database: {e}")
+        return None
+    
+def close_database_connection(connection):
+    if connection:
+        connection.close()
+        print("Database connection closed.")
+
+# 插入数据函数
+def insert_question(connection, qid, stem, options, answer, original, final):
+    # 将选项转换为 JSON 字符串
+    options_json = json.dumps(options, ensure_ascii=False)
+    
+    # 构建 SQL 插入语句
+    sql = """
+        INSERT INTO questions (qid, stem, options, answer, original, final)
+        VALUES (%s, %s, %s, %s, %s, %s)
+        ON DUPLICATE KEY UPDATE
+            stem = VALUES(stem),
+            options = VALUES(options),
+            answer = VALUES(answer),
+            original = VALUES(original),
+            final = VALUES(final);
+    """
+    
+    try:
+        # 创建游标并执行插入
+        with connection.cursor() as cursor:
+            cursor.execute(sql, (qid, stem, options_json, answer, original, final))
+        connection.commit()  # 提交事务
+        print(f"Question {qid} inserted/updated successfully.")
+        
+    except pymysql.MySQLError as e:
+        print(f"Error inserting/updating question {qid}: {e}")
+
+def time_pre(time):
+
+    date_obj = datetime.strptime(time, "%Y-%m-%dT%H:%M:%S.%fZ")
+    new_date_obj = date_obj - timedelta(days=1)
+    return new_date_obj.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
+
+
+
+# 每一次循环处理一天的数据
+
+maxendtime = "2024-11-15T16:00:00.000Z"
+# maxendtime = time_pre(maxendtime)
+
+minendtime = "2024-11-14T16:00:00.000Z"
+# minendtime = time_pre(minendtime)
+
+db_connection = connect_to_database()
+
+
+cookies = {
+    "SESSION": "NjdlNmEzYWMtYTFiOS00MjI3LTljY2ItYWE1MjcwNzE4NDg4"
+}
+
+for i in range(365):
+
+    url = "https://qbm.xkw.com/console/question-tasks/completed?maxendtime=" + maxendtime + "&minendtime=" + minendtime + "&onlymistake=false"
+
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+    questions = response.json()
+
+    if questions:
+        for question in questions:
+            if question['courseId'] == 20 and judgetype.main(int(question['qid']), cookies) == '200101':
+                problem, _ ,final  = getdetail_choice_withexplain.main(int(question['qid']), cookies)
+                original = gptapi_choice.main(problem)
+                insert_question(db_connection, int(question['qid']), problem['stem'], problem['options'], problem['answer'], original, final)
+
+    maxendtime = time_pre(maxendtime)
+    minendtime = time_pre(minendtime)
+
+    print(i)
+
+close_database_connection(db_connection)
+
+# ==== 结束: getdataset.py ====
+
+# ==== 开始: getdetail_blank.py ====
+
+from bs4 import BeautifulSoup
+
+
+def main(qid, cookies):
+    # 填空题
+
+    url = "https://qbm.xkw.com/console/questions/"+ str(qid) +"/detail"
+
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+
+    json_str = response.json()
+    stem = json_str['stem']             # 题目
+    answer = json_str['answer']         # 答案
+
+    result = ""
+
+    soup = BeautifulSoup(stem, 'html.parser')
+    for element in soup.find_all(['span', 'bk']):
+        if element.name == 'span':
+            result += element.text
+        elif element.name == 'bk' and element.attrs.get('type') == 'underline':
+            size = int(element.attrs.get("size", 0))
+            result += "_" * size
+
+    soup = BeautifulSoup(answer, 'html.parser')
+    answer = []
+    ans = soup.find_all('an')
+    for an in ans:
+        answer.append(an.find('span').text)  # 找到第一个 <span> 标签并获取内容，当然有可能是有多个 <span> 标签
+
+    problem = {}
+    problem['stem'] = result
+    problem['answer'] = answer
+
+    return problem
+# ==== 结束: getdetail_blank.py ====
+
+# ==== 开始: getdetail_blank_review.py ====
+
+
+
+def main(qid, cookies):
+    # 填空题
+
+    url = "https://qbm.xkw.com/console/questions/"+ str(qid) +"/detail"
+
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+
+    json_str = response.json()
+    stem = json_str['stem']                                 # 题目
+    answer = json_str['answer']                             # 答案
+    explanation = json_str['explanation']                   # 解析
+    catalogs = json_str['catalogs']                         # 章节目录
+    knowledgePointNames = json_str['knowledgePointNames']   # 知识点
+
+    result = ""
+
+    soup = BeautifulSoup(stem, 'html.parser')
+    for element in soup.find_all(['span', 'bk']):
+        if element.name == 'span':
+            result += element.text
+        elif element.name == 'bk' and element.attrs.get('type') == 'underline':
+            size = int(element.attrs.get("size", 0))
+            result += "_" * size
+
+    soup = BeautifulSoup(answer, 'html.parser')
+    answer = []
+    ans = soup.find_all('an')
+    for an in ans:
+        answer.append(an.find('span').text)  # 找到第一个 <span> 标签并获取内容，当然有可能是有多个 <span> 标签
+
+    # 获取解析
+    soup = BeautifulSoup(explanation, 'html.parser')
+    paras = soup.find('p')
+    explanation = ""
+    for span in paras.find_all('span'):
+        explanation += span.get_text()
+
+    # 获取章节目录
+    name = []
+    for catalog in catalogs:
+        name.append(catalog['name'])
+
+    problem = {}
+    problem['stem'] = result
+    problem['answer'] = answer
+    problem['explanation'] = explanation
+    problem['typeId'] = '2002'
+    problem['name'] = name
+    problem['knowledgePointNames'] = knowledgePointNames
+
+    return problem
+# ==== 结束: getdetail_blank_review.py ====
+
+# ==== 开始: getdetail_choice.py ====
+
+
+# 选择题有三个部分，分别为题干、选项、答案
+# 最终的返回结果是一个字典，包含题干、选项、答案
+
+def main(qid, cookies):
+
+    # 设置URL，题号为传入参数
+    url = "https://qbm.xkw.com/console/questions/" + str(qid) + "/detail"
+
+    # 发送GET请求，cookies为传入参数
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+
+    # 下面开始解析JSON数据
+    json_str = response.json()
+    stem_options = json_str['stem']             # 题干与选项混合
+    answer = json_str['answer']                 # 答案
+
+    stem = ""
+    options = {}
+
+    soup = BeautifulSoup(stem_options, 'html.parser')
+
+    # 解析题干，把所有span标签中的文本合并到一起
+    paras = soup.find_all('p')
+    for p in paras:
+        for span in p.find_all('span'):
+            stem += span.text
+        stem += '\n'
+    stem = stem[:-1]
+
+    # 解析选项，把选项放在字典中
+    og = soup.find('og')
+    i = 0
+    for op in og.find_all('op'):
+        # 这里竟然有些没有span，这就要首先判断是否包含span
+        if op.find('span'):
+            span_str = ""
+            spans = op.find_all('span')
+            for span in spans:
+                span_str += span.text
+            options[chr(65 + i)] = span_str
+        else:
+            options[chr(65 + i)] = op.text
+        i += 1
+
+    # 解析答案选项，把对应数字映射到选项字母
+    soup = BeautifulSoup(answer, 'html.parser')
+    an_element = soup.find('an')
+    if an_element and an_element.has_attr('isop'):                  # 这个isop属性可以判断是否为选择题！！！
+        if an_element.text == '':
+            answer = '无答案'
+        else:
+            numbers = an_element.text.split(',')
+            # 如果ans只有一个元素，那就是单选；如果是多个数字，那就是多选。这里作为判断单选多选的方法。
+            ans = [chr(64 + int(num)) for num in numbers]
+            answer = "".join(ans)
+
+    question = {}
+
+    question['stem'] = stem
+    question['options'] = options
+    question['answer'] = answer
+
+    return question
+
+# ==== 结束: getdetail_choice.py ====
+
+# ==== 开始: getdetail_choice_review.py ====
+
+
+# 选择题有三个部分，分别为题干、选项、答案
+# 这个函数为获取选择题的全部信息，因此不仅包含题干、选项、答案，还包含打标的信息
+# 最终的返回结果是一个字典，包含题干、选项、答案，打标信息
+
+
+def main(qid, cookies):
+
+    # 设置URL，题号为传入参数
+    url = "https://qbm.xkw.com/console/questions/" + str(qid) + "/detail"
+
+    # 发送GET请求，cookies为传入参数
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+
+    # 下面开始解析JSON数据
+    json_str = response.json()
+    stem_options = json_str['stem']                         # 题干与选项混合
+    answer = json_str['answer']                             # 答案
+    explanation = json_str['explanation']                   # 解析
+    catalogs = json_str['catalogs']                         # 章节目录
+    knowledgePointNames = json_str['knowledgePointNames']   # 知识点
+
+    stem = ""
+    options = {}
+
+    soup = BeautifulSoup(stem_options, 'html.parser')
+
+    # 解析题干，把所有span标签中的文本合并到一起
+    paras = soup.find_all('p')
+    for p in paras:
+        for span in p.find_all('span'):
+            stem += span.text
+        stem += '\n'
+    stem = stem[:-1]
+
+    # 解析选项，把选项放在字典中
+    og = soup.find('og')
+    i = 0
+    for op in og.find_all('op'):
+        # 这里竟然有些没有span，这就要首先判断是否包含span
+        if op.find('span'):
+            span_str = ""
+            spans = op.find_all('span')
+            for span in spans:
+                span_str += span.text
+            options[chr(65 + i)] = span_str
+        else:
+            options[chr(65 + i)] = op.text
+        i += 1
+
+    # 解析答案选项，把对应数字映射到选项字母
+    soup = BeautifulSoup(answer, 'html.parser')
+    an_element = soup.find('an')
+    if an_element and an_element.has_attr('isop'):                  # 这个isop属性可以判断是否为选择题！！！
+        if an_element.text == '':
+            answer = '无答案'
+        else:
+            numbers = an_element.text.split(',')
+            # 如果ans只有一个元素，那就是单选；如果是多个数字，那就是多选。这里作为判断单选多选的方法。
+            ans = [chr(64 + int(num)) for num in numbers]
+            answer = "".join(ans)
+    name = []
+    for catalog in catalogs:
+        name.append(catalog['name'])
+
+    # 获取解析
+    soup = BeautifulSoup(explanation, 'html.parser')
+    paras = soup.find('p')
+    explanation = ""
+    for span in paras.find_all('span'):
+        explanation += span.get_text()
+
+    # 获取章节目录
+    name = []
+    for catalog in catalogs:
+        name.append(catalog['name'])
+
+    question = {}
+    question['stem'] = stem
+    question['options'] = options
+    question['answer'] = answer
+    question['explanation'] = explanation
+    question['typeId'] = '2001'
+    question['name'] = name
+    question['knowledgePointNames'] = knowledgePointNames
+
+    return question
+# ==== 结束: getdetail_choice_review.py ====
+
+# ==== 开始: getdetail_choice_withexplain.py ====
+
+
+# 选择题有三个部分，分别为题干、选项、答案
+# 最终的返回结果是一个字典，包含题干、选项、答案
+
+def main(qid, cookies):
+
+    issingle = True
+
+    # 设置URL，题号为传入参数
+    url = "https://qbm.xkw.com/console/questions/" + str(qid) + "/detail"
+
+    # 发送GET请求，cookies为传入参数
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+
+    # 下面开始解析JSON数据
+    json_str = response.json()
+    stem_options = json_str['stem']             # 题干与选项混合
+    answer = json_str['answer']                 # 答案
+    explain = json_str['explanation']           # 标准解析
+
+    stem = ""
+    options = {}
+
+    soup = BeautifulSoup(stem_options, 'html.parser')
+
+    # 解析题干，把所有span标签中的文本合并到一起
+    paras = soup.find_all('p')
+    for p in paras:
+        for span in p.find_all('span'):
+            stem += span.text
+        stem += '\n'
+    stem = stem[:-1]
+
+    # 解析选项，把选项放在字典中
+    og = soup.find('og')
+    i = 0
+    for op in og.find_all('op'):
+        # 这里竟然有些没有span，这就要首先判断是否包含span
+        if op.find('span'):
+            options[chr(65 + i)] = op.find('span').text
+        else:
+            options[chr(65 + i)] = op.text
+        i += 1
+
+    # 解析答案选项，把对应数字映射到选项字母
+    soup = BeautifulSoup(answer, 'html.parser')
+    an_element = soup.find('an')
+    if an_element and an_element.has_attr('isop'):                  # 这个isop属性可以判断是否为选择题！！！
+        if an_element.text == '':
+            answer = '无答案'
+        else:
+            numbers = an_element.text.split(',')
+            # 如果ans只有一个元素，那就是单选；如果是多个数字，那就是多选。这里作为判断单选多选的方法。
+            ans = [chr(64 + int(num)) for num in numbers]
+            if len(ans) >= 2:
+                issingle = False
+            answer = "".join(ans)
+
+
+    soup = BeautifulSoup(explain, 'html.parser')
+    spans = soup.find_all('span')
+    explain = ""
+    for span in spans:
+        explain += span.text
+
+    question = {}
+
+    question['stem'] = stem
+    question['options'] = options
+    question['answer'] = answer
+
+    # for key,value in question.items():
+    #     print(key, value)
+
+    return question, issingle, explain
+
+# ==== 结束: getdetail_choice_withexplain.py ====
+
+# ==== 开始: getdetail_judge.py ====
+
+
+def main(qid, cookies):
+
+    # 设置URL，题号为传入参数
+    url = "https://qbm.xkw.com/console/questions/" + str(qid) + "/detail"
+
+    # 发送GET请求，cookies为传入参数
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+
+    # 下面开始解析JSON数据
+    json_str = response.json()
+    stem_options = json_str['stem']             # 题干与选项混合
+    answer = json_str['answer']                 # 答案
+
+    stem = ""
+    soup = BeautifulSoup(stem_options, 'html.parser')
+
+    # 这里解析出来题干
+    paras = soup.find('p')
+    for span in paras.find_all('span'):
+        stem += span.text
+    stem += '（正确/错误）'
+
+    # 这里默认有答案，没有的话看是否需要改？
+    soup = BeautifulSoup(answer, 'html.parser')
+    an = soup.find('an')
+    answer = an.find('span').text
+
+    question = {}
+    question['stem'] = stem
+    question['answer'] = answer
+
+    return question
+
+# ==== 结束: getdetail_judge.py ====
+
+# ==== 开始: getdetail_judge_review.py ====
+
+
+def main(qid, cookies):
+
+    # 设置URL，题号为传入参数
+    url = "https://qbm.xkw.com/console/questions/" + str(qid) + "/detail"
+
+    # 发送GET请求，cookies为传入参数
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+
+    # 下面开始解析JSON数据
+    json_str = response.json()
+    stem_options = json_str['stem']                         # 题干与选项混合
+    answer = json_str['answer']                             # 答案
+    explanation = json_str['explanation']                   # 解析
+    catalogs = json_str['catalogs']                         # 章节目录
+    knowledgePointNames = json_str['knowledgePointNames']   # 知识点
+
+
+    stem = ""
+    soup = BeautifulSoup(stem_options, 'html.parser')
+
+    # 这里解析出来题干
+    paras = soup.find('p')
+    for span in paras.find_all('span'):
+        stem += span.text
+    stem += '（正确/错误）'
+
+    # 这里默认有答案，没有的话看是否需要改？
+    soup = BeautifulSoup(answer, 'html.parser')
+    an = soup.find('an')
+    answer = an.find('span').text
+
+    # 获取解析
+    soup = BeautifulSoup(explanation, 'html.parser')
+    paras = soup.find('p')
+    explanation = ""
+    for span in paras.find_all('span'):
+        explanation += span.get_text()
+
+    # 获取章节目录
+    name = []
+    for catalog in catalogs:
+        name.append(catalog['name'])
+
+    question = {}
+    question['stem'] = stem
+    question['answer'] = answer
+    question['explanation'] = explanation
+    question['typeId'] = '2003'
+    question['name'] = name
+    question['knowledgePointNames'] = knowledgePointNames
+
+    return question
+
+# ==== 结束: getdetail_judge_review.py ====
+
+# ==== 开始: getdetail_short.py ====
+
+
+def main(qid, cookies):
+    # 简答题
+
+    url = "https://qbm.xkw.com/console/questions/"+ str(qid) +"/detail"
+
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+
+    json_str = response.json()
+    stem = json_str['stem']             # 题目
+    answer = json_str['answer']         # 答案
+
+    result = ""
+
+    soup = BeautifulSoup(stem, 'html.parser')
+    for element in soup.find_all(['span']):
+        result += element.text
+
+    soup = BeautifulSoup(answer, 'html.parser')
+    answer = ""
+    ans = soup.find('an')
+    for span in ans.find_all('span'):
+        answer += span.text
+
+    problem = {}
+    problem['stem'] = result
+    problem['answer'] = answer
+
+    return problem
+
+
+# ==== 结束: getdetail_short.py ====
+
+# ==== 开始: getdetail_short_review.py ====
+
+
+def main(qid, cookies):
+    # 简答题
+
+    url = "https://qbm.xkw.com/console/questions/"+ str(qid) +"/detail"
+
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+
+    json_str = response.json()
+    stem = json_str['stem']                                 # 题目
+    answer = json_str['answer']                             # 答案
+    explanation = json_str['explanation']                   # 解析
+    catalogs = json_str['catalogs']                         # 章节目录
+    knowledgePointNames = json_str['knowledgePointNames']   # 知识点
+
+
+    result = ""
+
+    soup = BeautifulSoup(stem, 'html.parser')
+    for element in soup.find_all(['span']):
+        result += element.text
+
+    soup = BeautifulSoup(answer, 'html.parser')
+    answer = ""
+    ans = soup.find('an')
+    for span in ans.find_all('span'):
+        answer += span.text
+
+    # 获取解析
+    soup = BeautifulSoup(explanation, 'html.parser')
+    paras = soup.find('p')
+    explanation = ""
+    for span in paras.find_all('span'):
+        explanation += span.get_text()
+
+    # 获取章节目录
+    name = []
+    for catalog in catalogs:
+        name.append(catalog['name'])
+
+    problem = {}
+    problem['stem'] = result
+    problem['answer'] = answer
+    problem['explanation'] = explanation
+    problem['typeId'] = '2005'
+    problem['name'] = name
+    problem['knowledgePointNames'] = knowledgePointNames
+
+    return problem
+
+
+# ==== 结束: getdetail_short_review.py ====
+
+# ==== 开始: gptapi_blank.py ====
+
+from openai import OpenAI
+import logging
+
+logging.getLogger('openai').setLevel(logging.WARNING)
+
+XAI_API_KEY = os.getenv("XAI_API_KEY")
+client = OpenAI(
+    api_key=XAI_API_KEY,
+    base_url="https://api.x.ai/v1",
+)
+
+def main(question):
+
+    prompt = f"""
+    这是一道填空题：
+    题目：{question['stem']}
+    答案：{question['answer']}
+    请根据以下格式给出解析：
+    本题考查{{某知识点}}。{{具体的分析，书面化简要一些}}。{{故答案为：}}。
+    如果有多个答案，将答案用"、"隔开
+    不要保留"{{}}"或"{[]}"其他非预期符号
+    """
+
+    completion = client.chat.completions.create(
+        model="grok-beta",
+        messages=[
+            {"role": "system", "content": "你是一个信息技术学科的老师"},
+            {"role": "user", "content": prompt},
+        ],
+    )
+
+    content = completion.choices[0].message.content
+
+    # 1. 清除格式化符号（例如 `**`）
+    content = re.sub(r'\*\*([^*]+)\*\*', r'\1', content)
+
+    # 2. 移除所有换行符和多余的空格
+    content = re.sub(r'\s+', ' ', content)
+
+    # 3. 删除所有 `{` 和 `}`
+    content = re.sub(r'[{}]', '', content)
+
+    # 4. 只保留英文单词之间的空格，其他空格全部删除
+    # - 匹配字母与字母之间的空格，保留它们
+    # - 删除其他情况的空格（例如字母前、字母后、中文之间的空格）
+    content = re.sub(r'([a-zA-Z])\s+([a-zA-Z])', r'\1 \2', content)  # 保留英文单词之间的空格
+    content = re.sub(r'\s+', '', content)  # 删除所有其他空格
+
+    # 5. 最终文本结果
+    cleaned_content = content.strip()
+
+    # 返回清理后的文本
+    return cleaned_content
+
+# ==== 结束: gptapi_blank.py ====
+
+# ==== 开始: gptapi_choice.py ====
+
+
+logging.getLogger('openai').setLevel(logging.WARNING)
+
+XAI_API_KEY = os.getenv("XAI_API_KEY")
+client = OpenAI(
+    api_key=XAI_API_KEY,
+    base_url="https://api.x.ai/v1",
+)
+
+def main(question):
+
+    prompt = f"""
+    这是一道选择题：
+    题目：{question['stem']}
+    选项：
+    {', '.join([f"{key}. {value}" for key, value in question['options'].items()])}
+    答案：{question['answer']}
+    请根据以下格式分析选项：
+    本题考查{{某知识点}}。{{具体分析为什么选择该答案}}。{{故答案为：{{A/B/C/D}}}}。
+    不要保留"{{}}"或其他非预期符号。
+    如果答案有多个选项用、隔开
+    """
+
+    completion = client.chat.completions.create(
+        model="grok-beta",
+        messages=[
+            {"role": "system", "content": "你是一个信息技术学科的老师"},
+            {"role": "user", "content": prompt},
+        ],
+        temperature = 0
+    )
+
+    content = completion.choices[0].message.content
+
+    # 1. 清除格式化符号（例如 `**`）
+    content = re.sub(r'\*\*([^*]+)\*\*', r'\1', content)
+
+    # 2. 移除所有换行符和多余的空格
+    content = re.sub(r'\s+', ' ', content)
+
+    # 3. 删除所有 `{` 和 `}`
+    content = re.sub(r'[{}]', '', content)
+
+    # 4. 只保留英文单词之间的空格，其他空格全部删除
+    # - 匹配字母与字母之间的空格，保留它们
+    # - 删除其他情况的空格（例如字母前、字母后、中文之间的空格）
+    content = re.sub(r'([a-zA-Z])\s+([a-zA-Z])', r'\1 \2', content)  # 保留英文单词之间的空格
+    content = re.sub(r'\s+', '', content)  # 删除所有其他空格
+
+    # 5. 最终文本结果
+    cleaned_content = content.strip()
+
+    # 返回清理后的文本
+    return cleaned_content
+
+# ==== 结束: gptapi_choice.py ====
+
+# ==== 开始: gptapi_judge.py ====
+
+
+logging.getLogger('openai').setLevel(logging.WARNING)
+
+XAI_API_KEY = os.getenv("XAI_API_KEY")
+client = OpenAI(
+    api_key=XAI_API_KEY,
+    base_url="https://api.x.ai/v1",
+)
+
+def main(question):
+
+    # prompt = f"""
+    # 这是一道判断题：
+    # 题目：{question['stem']}
+    # 答案：{question['answer']}
+    # 请根据以下格式给出这道题的解析：
+    # 本题考查{{某知识点}}。{{简要分析这个题目，直接给出分析}}。故说法{{正确/错误}}。
+    # 注意你给的不要保留"{{}}"
+    # 分析中有类似{{故说法正确/错误}}的总结性语句全部删掉
+    # """
+
+
+    prompt = f"""
+    这是一道判断题：
+    题目：{question['stem']}
+    答案：{question['answer']}
+    请根据以下格式给出这道题的解析：
+    本题考查某知识点。简要分析这个题目，直接给出分析。故说法正确或错误。
+    注意：请不要保留"{{}}"，并删除分析中的总结性语句。
+    """
+
+    completion = client.chat.completions.create(
+        model="grok-beta",
+        messages=[
+            {"role": "system", "content": "你是一个信息技术学科的老师"},
+            {"role": "user", "content": prompt},
+        ],
+    )
+
+    content = completion.choices[0].message.content
+
+    # 1. 清除格式化符号（例如 `**`）
+    content = re.sub(r'\*\*([^*]+)\*\*', r'\1', content)
+
+    # 2. 移除所有换行符和多余的空格
+    content = re.sub(r'\s+', ' ', content)
+
+    # 3. 删除所有 `{` 和 `}`
+    content = re.sub(r'[{}]', '', content)
+
+    # 4. 只保留英文单词之间的空格，其他空格全部删除
+    # - 匹配字母与字母之间的空格，保留它们
+    # - 删除其他情况的空格（例如字母前、字母后、中文之间的空格）
+    content = re.sub(r'([a-zA-Z])\s+([a-zA-Z])', r'\1 \2', content)  # 保留英文单词之间的空格
+    content = re.sub(r'\s+', '', content)  # 删除所有其他空格
+
+    content = content.replace('"', '')
+    # 5. 最终文本结果
+    cleaned_content = content.strip()                       # 这里面必定包含正确/错误的字眼，因此可以作为填入答案的契机
+
+    # 返回清理后的文本
+    return cleaned_content
+
+# ==== 结束: gptapi_judge.py ====
+
+# ==== 开始: gptapi_short.py ====
+
+
+logging.getLogger('openai').setLevel(logging.WARNING)
+
+XAI_API_KEY = os.getenv("XAI_API_KEY")
+client = OpenAI(
+    api_key=XAI_API_KEY,
+    base_url="https://api.x.ai/v1",
+)
+
+def main(question):
+
+    prompt = f"""
+    这是一道简答题：
+    题目：{question['stem']}
+    答案：{question['answer']}
+    请根据以下格式给出这道题的解析：
+    本题考查{{某知识点}}。{{简要分析这个题目}}。
+    注意你给的不要保留"{{}}"
+    """
+
+    completion = client.chat.completions.create(
+        model="grok-beta",
+        messages=[
+            {"role": "system", "content": "你是一个信息技术学科的老师"},
+            {"role": "user", "content": prompt},
+        ],
+    )
+
+    content = completion.choices[0].message.content
+
+    # 1. 清除格式化符号（例如 `**`）
+    content = re.sub(r'\*\*([^*]+)\*\*', r'\1', content)
+
+    # 2. 移除所有换行符和多余的空格
+    content = re.sub(r'\s+', ' ', content)
+
+    # 3. 删除所有 `{` 和 `}`
+    content = re.sub(r'[{}]', '', content)
+
+    # 4. 只保留英文单词之间的空格，其他空格全部删除
+    # - 匹配字母与字母之间的空格，保留它们
+    # - 删除其他情况的空格（例如字母前、字母后、中文之间的空格）
+    content = re.sub(r'([a-zA-Z])\s+([a-zA-Z])', r'\1 \2', content)  # 保留英文单词之间的空格
+    content = re.sub(r'\s+', '', content)  # 删除所有其他空格
+
+    content = content.replace('"', '')
+    # 5. 最终文本结果
+    cleaned_content = content.strip()
+
+    # 返回清理后的文本
+    return cleaned_content
+
+# ==== 结束: gptapi_short.py ====
+
+# ==== 开始: hebing.py ====
+
+
+def merge_python_files(output_file="all.py"):
+    # 获取当前目录下所有.py文件
+    python_files = [f for f in os.listdir('.') if f.endswith('.py') and f != output_file]
+    
+    # 按文件名排序
+    python_files.sort()
+    
+    # 存储已导入的模块，避免重复导入
+    imported_modules = set()
+    
+    with open(output_file, 'w', encoding='utf-8') as outfile:
+        # 添加文件头部注释
+        outfile.write(f"# 合并文件: {', '.join(python_files)}\n\n")
+        
+        for filename in python_files:
+            # 添加分隔注释
+            outfile.write(f"# ==== 开始: {filename} ====\n\n")
+            
+            with open(filename, 'r', encoding='utf-8') as infile:
+                for line in infile:
+                    # 处理导入语句，避免重复导入
+                    import_match = re.match(r'^\s*(import|from)\s+([\w\.]+)', line)
+                    if import_match:
+                        module = import_match.group(0).strip()
+                        if module not in imported_modules:
+                            imported_modules.add(module)
+                            outfile.write(line)
+                        continue
+                    else:
+                        outfile.write(line)
+            
+            # 添加文件结束注释
+            outfile.write(f"\n# ==== 结束: {filename} ====\n\n")
+    
+    print(f"已合并 {len(python_files)} 个Python文件到 {output_file}")
+
+    merge_python_files()
+    
+# ==== 结束: hebing.py ====
+
+# ==== 开始: inferCatlog.py ====
+
+
+def main(cookies, pointid, courseId):
+    
+    url = "https://qbm.xkw.com/console/books/catalogs/infer-catalog?courseid=" + str(courseId) + "&kpointids=" + str(pointid)
+
+    response = requests.get(url, cookies=cookies ,verify=certifi.where())
+    json_str = response.json()
+    return json_str
+# ==== 结束: inferCatlog.py ====
+
+# ==== 开始: judgetype.py ====
+
+
+# 题目类型，依次为：选择题、填空题、判断题、操作题、简答题、综合题
+# 选择题分为单选和多选，后续再进行区分
+type = ['01', '02', '03', '04', '05', '06']
+
+# 这个函数主要是根据传入的题目qid，返回题目的类型
+def main(qid, cookies):
+
+    url = "https://qbm.xkw.com/console/questions/" + str(qid) + "/detail"
+
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+
+    json_str = response.json()
+    stem = json_str['stem']
+    soup = BeautifulSoup(stem, 'html.parser')
+    if soup.find('og'):                         # 选择题，直接返回结果
+        return type[0]
+    elif len(soup.find_all('p')) == 1:          # 可能是填空题、判断题或者简答题
+        bk = soup.find('bk')
+        if not bk:                                  # 说明是简答题
+            return type[4]
+        else:
+            if bk.get('type') == 'underline':       # 说明是填空题
+                return type[1]
+            elif bk.get('type') == 'bracket':       # 说明是判断题
+                return type[2]
+    else:
+        bk = soup.find('bk')
+        if not bk:                                  # 说明是操作题
+            return type[3]
+        else:                                       # 说明是综合题
+            return type[5]
+
+# 直接返回标签type
+def gettype(qid, cookies):
+    url = "https://qbm.xkw.com/console/questions/" + str(qid) + "/detail"
+
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+
+    json_str = response.json()
+
+    return json_str['typeId']
+
+def choice(qid, cookies):
+
+    url = "https://qbm.xkw.com/console/questions/" + str(qid) +"/infer-struct-question-type?typeid=2001"
+    
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+
+    json_str = response.json()
+    return json_str[0]["id"]
+
+
+# cookies = {
+#     "SESSION": "NTAyYzdhYTUtNmU4ZC00ZThiLWE5YWQtZTczYmQwMTBjMGE5"
+# }
+
+# print(choice(3735884023898112,cookies))
+# ==== 结束: judgetype.py ====
+
+# ==== 开始: login.py ====
+
+import websocket
+import time
+
+# 设置请求的 URL
+url = "https://sso.zxxk.com/user/qrcode/qrcode-login/v2/content"
+
+# 设置请求的参数
+params = {
+    # 'token': 'e32a14f180b44bd9a1409bf61fa6f9c6',  # 未知token，不知道怎么生成的
+    # 'service': 'https://qbm.xkw.com/console/callback?client_name=qbm'  # service参数
+}
+
+# 设置请求头部
+headers = {
+    # 'Host': 'sso.zxxk.com',
+    # 'Connection': 'keep-alive',
+    # 'sec-ch-ua-platform': '"Windows"',
+    # 'X-Requested-With': 'XMLHttpRequest',
+    # 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36',
+    # 'Accept': '*/*',
+    # 'sec-ch-ua': '"Google Chrome";v="131", "Chromium";v="131", "Not_A Brand";v="24"',
+    # 'sec-ch-ua-mobile': '?0',
+    # 'Sec-Fetch-Site': 'same-origin',
+    # 'Sec-Fetch-Mode': 'cors',
+    # 'Sec-Fetch-Dest': 'empty',
+    # 'Referer': 'https://sso.zxxk.com/login?service=https%3A%2F%2Fqbm.xkw.com%2Fconsole%2Fcallback%3Fclient_name%3Dqbm',
+    # 'Accept-Encoding': 'gzip, deflate, br, zstd',
+    # 'Accept-Language': 'zh-CN,zh;q=0.9',
+    'Cookie': 'xkw-device-id=511BE05CF3B4C7A52BEEA968212D5E86; UT1=ut-497666-rGWDN-w7YXgctw; UT2=ut-497666-rGWDN-w7YXgctw; qrcode-logined=true; service-number-logined=true; Hm_lvt_384e6cb5ddbf481e97ba12544207c0ee=1731465790,1732034952; ssoid=2cf372d0-5675-4b1b-ad97-f1f463f25a32'
+}
+
+# 发送 GET 请求
+response = requests.get(url, headers=headers, params=params, verify=certifi.where())
+print(response.text)
+
+# 解析key_value
+json_data = response.json()
+url = json_data['data']['content']
+match = re.search(r'key=([a-f0-9]+)', url)
+key_value = match.group(1)
+print(key_value)
+
+WebSocket_URL = "wss://sso.zxxk.com/user/qrcode/socketServer?qrcodeKey=" + key_value + "&type=qrcode-login"
+
+# 建立连接
+try:
+    ws = websocket.create_connection(WebSocket_URL, header=headers)
+    print("Connected to WebSocket")
+
+    # 接收服务器消息
+    response = ws.recv()
+    print("Received from server:", response)
+
+except Exception as e:
+    print("Error:", e)
+
+# ==== 结束: login.py ====
+
+# ==== 开始: login_qrcode.py ====
+
+
+# ==== 结束: login_qrcode.py ====
+
+# ==== 开始: main.py ====
+
+import pickque                      # 领取题目
+import pickque_review               # 领取审核题目
+import querytask                    # 查询任务
+import querytask_review             # 查询解析任务
+import getdetail_choice             # 获取选择题的题干、选项、答案
+import getdetail_judge              # 获取判断题的题干、答案
+import getdetail_blank              # 获取填空题的题干、答案
+import getdetail_short              # 获取简答题的题干、答案
+import getbornwithoutanswer         # 获取题目是否有答案 
+
+# import gptapi_choice                # 调用grok-beta解答选择题
+# import gptapi_judge                 # 调用grok-beta解答判断题
+# import gptapi_blank                 # 调用grok-beta解答填空题
+# import gptapi_short                 # 调用grok-beta解答简答题
+
+import doubao_choice                # 调用Doubao-pro解答选择题
+import doubao_judge                 # 调用Doubao-pro解答判断题
+import doubao_blank                 # 调用Doubao-pro解答填空题
+import doubao_short                 # 调用Doubao-pro解答简答题
+
+import getdetail_choice_review      # 获取选择题的题干、选项、答案、解析、题型、章节目录、知识点
+import getdetail_judge_review       # 获取判断题的题干、答案、解析、题型、章节目录、知识点
+import getdetail_blank_review       # 获取填空题的题干、答案、解析、题型、章节目录、知识点
+import getdetail_short_review       # 获取简答题的题干、答案、解析、题型、章节目录、知识点
+
+import doubao_choice_review         # 审核选择题
+import doubao_judge_review          # 审核判断题
+import doubao_blank_review          # 审核填空题
+import doubao_short_review          # 审核简答题
+
+import putanswer                    # 将API的结果处理并提交
+import puttag                       # 修改题目标签
+import copytag                      # 复制题目标签
+import submit                       # 提交整个题目
+import submit_review                # 提交审核题目
+# import trainmodel                 # 模型微调
+import random                       # 随机数字生成
+import tkinter as tk                # 应用程序包
+from tkinter import ttk             # 样式包
+
+
+# 设置日志记录
+logging.basicConfig(
+    filename='task_log.txt',  # 日志文件名
+    level=logging.INFO,       # 设置日志级别为INFO
+    format='%(asctime)s - %(message)s',  # 日志格式
+)
+
+# cookies是全局变量，每次登录之后获取一下，感觉可以改成环境变量
+cookies = {
+    "SESSION": "ZDM0MTI3OGItZTNmMi00ZTI2LWFiNGUtY2IxNmVkMDRkMGU5"
+}
+
+# 目前已经领取的题号列表，后续是希望能更改为一个字典的形式
+# tasks = []
+
+# 领取初中题目，参数是领取题目的数量
+def pick_junior(num):
+    for _ in range(num):
+        pickque.pick_junior(cookies)
+
+# 领取高中题目，参数是领取题目的数量
+def pick_high(num):
+    for _ in range(num):
+        pickque.pick_high(cookies)
+
+# 领取初中题目，直到任务池满，任务池大小默认15
+def pick_junior_all():
+
+    start_time = time.time()  # 记录开始时间
+
+    qids = querytask.main(cookies)[1]
+    num = 10 - len(qids)
+
+    for _ in range(num):
+        pickque.pick_junior(cookies)
+
+    end_time = time.time()  # 记录结束时间
+    duration = end_time - start_time  # 计算花费的时间
+    logging.info(f"pick_junior_all 完成，花费时间: {duration:.2f}秒")
+
+# 领取高中题目，直到任务池满，任务池大小默认15
+def pick_high_all():
+    
+    start_time = time.time()  # 记录开始时间
+
+    qids = querytask.main(cookies)[1]
+    num = 15 - len(qids)
+
+    for _ in range(num):
+        pickque.pick_high(cookies)
+    
+    end_time = time.time()  # 记录结束时间
+    duration = end_time - start_time  # 计算花费的时间
+    logging.info(f"pick_high_all 完成，花费时间: {duration:.2f}秒")
+
+
+# 领取初中审核题目，直到任务池满，任务池大小默认15
+def pick_junior_review_all():
+
+    start_time = time.time()  # 记录开始时间
+    num = 1
+
+    for _ in range(num):
+        pickque_review.junior(cookies)
+
+    end_time = time.time()  # 记录结束时间
+    duration = end_time - start_time  # 计算花费的时间
+    logging.info(f"pick_junior_review_all 完成，花费时间: {duration:.2f}秒")
+
+# 领取高中审核题目，直到任务池满，任务池大小默认15
+def pick_high_review_all():
+    
+    start_time = time.time()  # 记录开始时间
+
+    # qids = querytask.main(cookies)[1]
+    # num = 15 - len(qids)
+    num = 10
+
+    for _ in range(num):
+        pickque_review.high(cookies)
+    
+    end_time = time.time()  # 记录结束时间
+    duration = end_time - start_time  # 计算花费的时间
+    logging.info(f"pick_high_review_all 完成，花费时间: {duration:.2f}秒")
+
+
+
+# 查询题目ids、qids，注意这里返回结果为两个
+def query_task():
+    return querytask.main(cookies)
+
+# 一键提交所有题目
+def all_submit():
+    ids = querytask.main(cookies)[0]
+    for id in ids:
+        submit.main(id, cookies)
+
+def all_review_submit():
+    ids = querytask_review.main(cookies)[0]
+    for id in ids:
+        submit_review.main(id, cookies)
+
+
+# 我们拿到一个题号之后，需要首先判断其类型，因为答案时有时无，我们在此考虑暂时使用stem去判断题目的类型
+# 这里开始写处理选择题的代码，我们无法提前得知该题目是单选还是多选，因此在这里先统一按照单选去处理
+# 下面处理选择题
+def solve_choice(qid):
+
+    question = getdetail_choice.main(qid, cookies)
+    answer_text = doubao_choice.main(question)
+    putanswer.main(qid, cookies, answer_text)
+
+# 下面处理判断题，目前已经添加自动写入答案
+def solve_judge(qid):
+
+    question = getdetail_judge.main(qid, cookies)
+    answer_text = doubao_judge.main(question)
+    putanswer.main(qid, cookies, answer_text)
+
+# 下面处理填空题
+def solve_blank(qid):
+
+    question = getdetail_blank.main(qid, cookies)
+    answer_text = doubao_blank.main(question)
+    putanswer.main(qid, cookies, answer_text)
+
+# 下面处理简答题
+def solve_short(qid):
+
+    question = getdetail_short.main(qid, cookies)
+    answer_text = doubao_short.main(question)
+    putanswer.main(qid, cookies, answer_text)
+
+# 一次处理所有题目
+def solve_all():
+
+    start_time = time.time()  # 记录开始时间
+    qids = query_task()[1]
+    for qid in qids:
+        bornwithoutanswer = getbornwithoutanswer.main(qid ,cookies)
+        type = judgetype.main(qid, cookies)
+        if type == '01':
+            solve_choice(qid)
+            type = judgetype.choice(qid, cookies)[2:]
+        elif type == '02':
+            solve_blank(qid)
+        elif type == '03':
+            solve_judge(qid)
+        elif type == '05':
+            solve_short(qid)
+        else:
+            print(f'题目{qid}目前暂不支持')
+        if bornwithoutanswer:
+            # 这里需要进行答案填充，分为选择题、填空题、判断题，简答题暂不支持
+            print(f"{qid}需要做答案填充")
+        puttag.main(qid, cookies, type)
+    end_time = time.time()  # 记录结束时间
+    duration = end_time - start_time  # 计算花费的时间
+    logging.info(f"solve_all 完成，花费时间: {duration:.2f}秒")
+
+def tag_all(sour_qid):
+    qids = query_task()[1]
+    indices = [3,4,5,7,11,12,14]
+    indices = [2,6,8,9,10,13]
+    qids = [qids[i] for i in indices]
+    for qid in qids:
+        type = judgetype.main(qid, cookies)
+        copytag.main(sour_qid, qid, cookies, type)
+
+def channel():
+
+    loop_count = 1  # 初始化循环次数
+
+    while True:
+
+        loop_start_time = time.time()
+        logging.info(f"第 {loop_count} 次循环开始，时间：{time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(loop_start_time))}")
+
+        pick_junior_all()
+
+        solve_all()           # 串行处理
+
+        random_number = random.randint(100, 999)
+        print(f"系统生成的三位数是：{random_number}")
+        user_input_start_time = time.time()
+
+        user_input = input("请在完成所有题目的检查之后，输入上面系统生成的三位数：")
+
+        while user_input != str(random_number):
+            user_input = input("输入错误，请重新输入：")
+
+        user_input_end_time = time.time()
+        user_input_duration = user_input_end_time - user_input_start_time
+        logging.info(f"用户检查修正，花费时间: {user_input_duration:.2f}秒")
+
+        all_submit()
+
+        loop_end_time = time.time()
+        loop_duration = loop_end_time - loop_start_time
+        logging.info(f"第 {loop_count} 次循环结束，耗时: {loop_duration:.2f}秒")
+
+        continue_input = input("是否继续下一轮？(yes/no): ").strip().lower()
+        if continue_input == 'no':
+            print("解题结束，快去愉快的享受生活吧。")
+            break  # 如果用户输入no，退出循环
+
+        loop_count += 1
+
+def verify_session(session):
+
+    cookies = {
+        "SESSION": session
+    }
+
+    url = "https://qbm.xkw.com/console/account/userinfo"
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+    if 'application/json' in response.headers['Content-Type'] and response.json()['info']['authc']['principal']['login']['id'] == 61883486:
+        return True
+    else:
+        return False
+
+# 点击按钮时的事件处理函数
+def on_submit():
+    session_input = entry_session.get("1.0", "end-1c")  # 获取用户输入的SESSION
+    global cookies
+    if verify_session(session_input):  # 验证SESSION
+        messagebox.showinfo("验证通过", "SESSION正确")
+        cookies['session'] = session_input
+        # 在这里可以放置继续后续操作的代码，比如打开新的窗口或执行其他函数
+    else:
+        messagebox.showerror("验证失败", "SESSION不正确，请重新输入。")
+
+def review_choice(qid):
+    question = getdetail_choice_review.main(qid, cookies)
+    result = doubao_choice_review.main(question)
+    print(f'题目{qid}的审核结果是{result}')
+def review_blank(qid):
+    question = getdetail_blank_review.main(qid, cookies)
+    result = doubao_blank_review.main(question)
+    print(f'题目{qid}的审核结果是{result}')
+def review_judge(qid):
+    question = getdetail_judge_review.main(qid, cookies)
+    result = doubao_judge_review.main(question)
+    print(f'题目{qid}的审核结果是{result}')
+def review_short(qid):
+    question = getdetail_short_review.main(qid, cookies)
+    result = doubao_short_review.main(question)
+    print(f'题目{qid}的审核结果是{result}')
+    
+def auto_review():
+    # 首先，有可能没有当前的catalogid，需要加一下
+    ids = querytask_review.main(cookies)[0]
+    qids = querytask_review.main(cookies)[1]
+    for id in ids:
+        print(f"{id}正在人工智能审核中")
+    for qid in qids:
+        type = judgetype.gettype(qid, cookies)
+        if type == '200101' or type == '200102' or type == '350101' or type == '350102':
+            review_choice(qid)
+        elif type == '2002' or type == '3502':
+            review_blank(qid)
+        elif type == '2003' or type == '3503':
+            review_judge(qid)
+        elif type == '2005' or type == '3505':
+            review_short(qid)
+        else:
+            print(f'题目{qid}目前暂不支持')
+        puttag.orgin(qid, cookies)             # 添加可能没有添加的那个标签
+
+if __name__ == '__main__':
+
+
+    # pick_high_all()
+    # channel()
+
+    # all_review_submit()
+    # pick_high_review_all()
+    # auto_review()
+
+    # all_review_submit()
+    # pick_junior_review_all()
+    # auto_review()
+
+    # all_submit()
+    # pick_high_all()
+    # solve_all()
+
+    # all_submit()
+    # pick_junior_all()
+    # solve_all()
+
+    # tag_all(3733771704238080)
+    # tag_all(3691471447203840)
+
+    # copytag.main(3640974279360512, 3640974279172096 , cookies, "0101")
+
+    # qid = 3727539247685632
+    # answer_text = """本题考查物联网的相关知识。在门铃远程通知系统中，输入模块是门铃端，作为发布者；输出模块是用户端，作为订阅者；计算模块是 MQTT 服务器，作为连接两者的桥梁，实现对输入和输出模块的控制。如果门铃被按下，则向MQTT服务器的主题发送消息，所以门铃按下是数据传递的触发条件。故答案为触发。"""
+    # putanswer.main(qid, cookies, answer_text)
+
+    # qid = 3640915508764672
+    # question = getdetail_choice.main(qid, cookies)
+    # print(question)
+
+
+    # pick_high_all()
+    # solve_all()
+
+    # root = tk.Tk()
+    # # 设置窗口大小
+    # width = 800
+    # height = 600
+    # root.geometry(f"{width}x{height}")
+    # screen_width = root.winfo_screenwidth()
+    # screen_height = root.winfo_screenheight()
+    # position_top = int((screen_height - height) / 2)
+    # position_left = int((screen_width - width) / 2)
+    # root.geometry(f"{width}x{height}+{position_left}+{position_top}")
+    # root.title("学科网自动答题脚本")
+
+    # root.configure(bg="#f0f0f0")
+
+    # style = ttk.Style()
+
+    # style.configure("TLabel", font=("Arial", 20))  # 设置字体和大小
+
+    # # 配置按钮字体大小
+    # style.configure("TButton", font=("Arial", 20, "bold"))  # 设置字体和大小
+
+    # frame = ttk.Frame(root)
+    # frame.pack(expand=True)  # 让框架充满窗口，控件将相对于框架居中
+
+    # label = ttk.Label(frame, text="请输入SESSION：", style="TLabel", background="#f0f0f0")
+    # label.pack(pady=10)
+
+    # entry_session = tk.Text(frame, font=("Arial", 20), height=3, width=30)  # 设置字体、行高和列宽
+    # entry_session.pack(pady=13)
+
+    # btn_solve_all = ttk.Button(frame, text="提交", style="TButton", command=on_submit)
+    # btn_solve_all.pack(pady=10)
+
+    # root.mainloop()
+
+
+
+
+# ==== 结束: main.py ====
+
+# ==== 开始: maketag.py ====
+
+
+
+# ==== 结束: maketag.py ====
+
+# ==== 开始: pickque.py ====
+
+
+# 领取初中信息技术的题目
+def pick_junior(cookies):
+    
+    url_junior = "https://qbm.xkw.com/console/question-tasks/blind-pick?courseids=20&phase=p3"
+    requests.get(url_junior, cookies=cookies, verify=certifi.where())
+
+
+# 领取高中信息技术的题目
+def pick_high(cookies):
+
+    url_high = "https://qbm.xkw.com/console/question-tasks/blind-pick?courseids=35&phase=p3"
+    requests.get(url_high, cookies=cookies, verify=certifi.where())
+
+# ==== 结束: pickque.py ====
+
+# ==== 开始: pickque_review.py ====
+
+
+"""
+
+    领取解析审核任务
+    1. 领取初中信息技术的解析审核任务
+    2. 领取高中信息技术的解析审核任务
+
+"""
+
+# 领取初中信息技术的题目
+def junior(cookies):
+    
+    url_junior = "https://qbm.xkw.com/console/question-task-audits/blind-pick?courseid=20"
+    response = requests.get(url_junior, cookies=cookies, verify=certifi.where())
+
+
+# 领取高中信息技术的题目
+def high(cookies):
+
+    url_high = "https://qbm.xkw.com/console/question-task-audits/blind-pick?courseid=35"
+    requests.get(url_high, cookies=cookies, verify=certifi.where())
+# ==== 结束: pickque_review.py ====
+
+# ==== 开始: prePointIds.py ====
+
+
+# 默认返回probably最大的知识点，后续需要优化
+
+def main(qid, cookies, type):
+
+    url = "https://qbm.xkw.com/console/tiger/predictions?questionid=" + str(qid) + "&type=" + type
+
+    response = requests.get(url, cookies=cookies ,verify=certifi.where())
+    json_str = response.json()
+
+    return json_str['predictedPointIds'][0]
+
+# ==== 结束: prePointIds.py ====
+
+# ==== 开始: putanswer.py ====
+
+
+def split_text_into_spans(answer_text):
+    # 定义中文、英文、数字和标点符号的正则表达式
+    chinese_pattern = re.compile(r'[\u4e00-\u9fa5]')
+    english_pattern = re.compile(r'[a-zA-Z0-9]')
+    punctuation_pattern = re.compile(r'[，。！？、；：“”‘’《》【】（）]')
+    
+    spans = []  # 用于存储生成的span元素
+    current_span = ""  # 当前span内容
+    current_font = None  # 当前span的字体
+    
+    # 遍历每个字符并根据类型生成相应的span
+    for char in answer_text:
+        if chinese_pattern.match(char) or punctuation_pattern.match(char):  # 中文或中文标点
+            # 如果当前span是英文或数字，需要闭合span并开始新的span
+            if current_font != "宋体":
+                if current_span:
+                    spans.append(f'<span word-font="Times New Roman">{current_span}</span>')
+                current_span = char
+                current_font = "宋体"
+            else:
+                current_span += char
+        elif english_pattern.match(char):  # 英文或数字
+            # 如果当前span是中文，需要闭合span并开始新的span
+            if current_font != "Times New Roman":
+                if current_span:
+                    spans.append(f'<span word-font="宋体">{current_span}</span>')
+                current_span = char
+                current_font = "Times New Roman"
+            else:
+                current_span += char
+        else:
+            # 对于不属于中文、英文或标点的字符，按照宋体处理
+            if current_font != "Times New Roman":
+                if current_span:
+                    spans.append(f'<span word-font="宋体">{current_span}</span>')
+                current_span = char
+                current_font = "Times New Roman"
+            else:
+                current_span += char
+
+    # 在循环结束后，确保将最后的span添加到结果中
+    if current_span:
+        if current_font == "宋体":
+            spans.append(f'<span word-font="宋体">{current_span}</span>')
+        else:
+            spans.append(f'<span word-font="Times New Roman">{current_span}</span>')
+    
+    # 将所有span合并为一个字符串并返回
+    return ''.join(spans)
+
+def main(qid, cookies, answer_text):
+
+    url = "https://qbm.xkw.com/console/questions/" + str(qid) + "/qml/explanation"
+
+    data = {
+        "explanation": f"<exps><seg name=\"详解\"><p align=\"left\">{split_text_into_spans(answer_text)}</p></seg></exps>"
+    }
+
+    response = requests.put(url, cookies = cookies, json=data)
+
+    return response.text
+
+# 这里为修改判断题的答案，answer取值为正确or错误
+def answer_judge(qid, cookies, answer):
+
+    url = "https://qbm.xkw.com/console/questions/" + str(qid) + "/qml/answer"
+
+    data = {
+        "answer": f"<ans><sq><an><span>{answer}</span></an></sq></ans>"
+    }
+
+    response = requests.put(url, cookies = cookies, json=data)
+
+    return response.text
+
+# 这里为修改填空题的答案，answer取值为
+def answer_blank(qid, cookies, answer):
+
+    answer_list = answer.split('、')
+    url = "https://qbm.xkw.com/console/questions/" + str(qid) + "/qml/answer"
+
+    answer_str = "<ans><sq>"
+    for answer in answer_list:
+        answer_str += f"<an><span>{answer}</span></an>"
+    answer_str += "</sq></ans>"
+
+    data = {
+        "answer": answer_str
+    }
+
+    response = requests.put(url, cookies = cookies, json=data)
+
+    print(response.text)
+
+# 这里为修改选择题的答案，answer取值为A、B、C、D等，仅针对单选，多选后续需要优化
+def answer_choice(qid, cookies, answer):
+
+    url = "https://qbm.xkw.com/console/questions/" + str(qid) + "/qml/answer"
+    data = {
+        "answer": f"answer=<ans><sq><an isop=\"true\">{','.join(str(ord(option) - ord('A') + 1) for option in answer.split('、'))}</an></sq></ans>"
+    }
+
+    response = requests.put(url, cookies = cookies, json=data)
+    return response.text
+
+def get_analysis(qid, cookies):
+    
+    url = "https://qbm.xkw.com/console/questions/"+ str(qid) +"/detail"
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+    json_str = response.json()
+    explaination = json_str['explanation']
+    
+
+def answer(qid, cookies):
+
+    url = "https://qbm.xkw.com/console/questions/" + str(qid) + "/qml/answer"
+    data = {
+        "answer": "<ans><sq><an isop=\"true\">2</an></sq></ans>"
+    }
+    response = requests.put(url, cookies = cookies, json=data)
+
+    return response.text
+
+def stem(qid, cookies):
+
+    url = "https://qbm.xkw.com/console/questions/" + str(qid) + "/qml/stem"
+
+    data = {
+        "stem": "<stem><p align=\"left\"><span word-font=\"宋体\">在多人协同制作网页时，可能遇到的挑战有沟通不畅、</span><bk index=\"1\" size=\"6\" type=\"underline\"/><span word-font=\"宋体\">等。</span></p></stem>"
+    }
+
+    response = requests.put(url, cookies = cookies, json=data)
+    print(response.text)
+    return response.text
+# ==== 结束: putanswer.py ====
+
+# ==== 开始: puttag.py ====
+
+
+def main(qid, cookies, type):
+
+    data = {}
+
+    # 获取年份来源两项参数，共用url
+    url = "https://qbm.xkw.com/console/questions/properties/" + str(qid)
+    response = requests.get(url, cookies=cookies ,verify=certifi.where())
+    json_str = response.json()
+
+    data['year'] = json_str['year']                                                  # 年份由get请求获取
+    data['source'] = json_str['source']                                              # 来源由get请求获取
+    data['typeId'] = str(json_str['courseId']) + type                                # 题型由参数传入
+    data['difficulty'] = '0.9450000000000001'                                        # 难度默认值
+    data['tagIds'] = ['1']                                                           # 试题分类默认值
+    pointid = prePointIds.main(qid, cookies, str(json_str['courseId']) + type)                                                          
+    data['knowledgePointIds'] = [pointid]                                            # 试题知识点根据学科网接口获取
+    data['catalogIds'] = inferCatlog.main(cookies, pointid, json_str['courseId'])    # 章节目录根据学科网接口获取
+    data['catalogIds'].extend(get_paper_catalogIds(qid, cookies))
+    if(type == '0101'):
+        data['typeFeatureIds'] = ['200101']
+        data['typeFeatureNames'] = ['单选']
+    if(type == '0102'):
+        data['typeFeatureIds'] = ['200102']
+        data['typeFeatureNames'] = ['多选']
+    requests.put(url, cookies=cookies, json=data, verify=certifi.where())
+
+def orgin(qid, cookies):
+
+    data = {}
+    url = "https://qbm.xkw.com/console/questions/properties/" + str(qid)
+    response = requests.get(url, cookies=cookies ,verify=certifi.where())
+    json_str = response.json()
+    data = json_str
+    data['catalogIds'].extend(get_paper_catalogIds(qid, cookies))
+    requests.put(url, cookies=cookies, json=data, verify=certifi.where())
+
+def orgin_copy(qid, cookies):
+
+    data = {}
+    url = "https://qbm.xkw.com/console/questions/properties/" + str(qid)
+    response = requests.get(url, cookies=cookies ,verify=certifi.where())
+    json_str = response.json()
+    data = json_str
+    data['typeId'] = '2006'
+    requests.put(url, cookies=cookies, json=data, verify=certifi.where())
+
+def get_paper_catalogIds(qid, cookies):
+
+    url = "https://qbm.xkw.com/console/papers/" + qid + "/catalogIds"
+    response = requests.get(url, cookies=cookies ,verify=certifi.where())
+    json_str = response.json()
+    return json_str
+
+# ==== 结束: puttag.py ====
+
+# ==== 开始: querytask.py ====
+
+
+def main(cookies):
+
+    ids = []
+    qids = []
+    url = "https://qbm.xkw.com/console/question-tasks/my-task-overview"
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+
+    json_str = response.json()
+    for task in json_str['questionTasks']:
+        ids.append(task['id'])
+        qids.append(task['qid'])
+        
+    return ids, qids
+# ==== 结束: querytask.py ====
+
+# ==== 开始: querytask_review.py ====
+
+
+def main(cookies):
+
+    ids = []
+    qids = []
+    url = "https://qbm.xkw.com/console/question-task-audits?searchstate=my-auditing"
+    response = requests.get(url, cookies=cookies, verify=certifi.where())
+
+    json_str = response.json()
+    for task in json_str['items']:
+
+        ids.append(task['id'])
+        qids.append(task['qid'])
+        
+    return ids, qids
+
+# ==== 结束: querytask_review.py ====
+
+# ==== 开始: structure.py ====
+
+
+def list_files_in_directory(directory):
+    # 获取指定目录下的所有文件和文件夹
+    files = os.listdir(directory)
+    
+    # 过滤出文件（排除文件夹）
+    files = [f for f in files if os.path.isfile(os.path.join(directory, f))]
+    
+    return files
+
+def save_filenames_to_file(filenames, output_file):
+    # 将文件名写入到指定的输出文件中
+    with open(output_file, 'w', encoding='utf-8') as f:
+        for filename in filenames:
+            f.write(filename + '\n')
+
+    # 指定目标路径
+    target_directory = r'D:\\Code\\xkwautosolve'  # 使用原始字符串（raw string）避免转义问题
+    
+    # 检查路径是否存在
+    if not os.path.exists(target_directory):
+        print(f"路径 {target_directory} 不存在！")
+        exit()
+    
+    # 列出目标文件夹中的所有文件
+    files = list_files_in_directory(target_directory)
+    
+    # 输出文件名到文件
+    output_file = os.path.join(target_directory, 'file_list.txt')  # 输出文件保存到目标路径
+    save_filenames_to_file(files, output_file)
+    
+    print(f"文件名已保存到 {output_file}")
+# ==== 结束: structure.py ====
+
+# ==== 开始: submit.py ====
+
+
+def main(id, cookies):
+    
+    url = "https://qbm.xkw.com/console/question-tasks/"+str(id)+"/submit"
+    requests.post(url, cookies=cookies, verify=certifi.where())
+# ==== 结束: submit.py ====
+
+# ==== 开始: submit_review.py ====
+
+
+def main(id, cookies):
+
+    url = "https://qbm.xkw.com/console/question-task-audits/" + str(id)
+    requests.post(url, cookies=cookies, json=[] ,verify=certifi.where())
+# ==== 结束: submit_review.py ====
+
+# ==== 开始: tempCodeRunnerFile.py ====
+
+    # pick_junior_all()
+    # solve_all()
+# ==== 结束: tempCodeRunnerFile.py ====
+
+# ==== 开始: trainmodel.py ====
+
+import torchvision
+import pandas as pd
+from datasets import Dataset
+from transformers import T5ForConditionalGeneration, T5Tokenizer
+from sklearn.model_selection import train_test_split
+
+torchvision.disable_beta_transforms_warning()
+
+def load_data_from_db():
+    # 连接数据库
+    connection = pymysql.connect(
+        host="localhost",
+        user="root",
+        password="abc123",
+        database="xkwdatabase"
+    )
+
+    query = """
+    SELECT qid, stem, options, answer, original, final
+    FROM questions
+    """
+
+    data = pd.read_sql(query, connection)
+    connection.close()
+    return data
+
+def format_data(data):
+    formatted_data = []
+    for _, row in data.iterrows():
+        input_text = f"题干: {row['stem']} 选项: {row['options']} 答案: {row['answer']} 解析: {row['original']}"
+        target_text = row['final']
+        formatted_data.append({"input": input_text, "target": target_text})
+    return formatted_data
+
+from torch.utils.data import Dataset
+
+class QuestionDataset(Dataset):
+    def __init__(self, data, tokenizer, max_length=512):
+        self.data = data
+        self.tokenizer = tokenizer
+        self.max_length = max_length
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, idx):
+        item = self.data[idx]
+        inputs = self.tokenizer(
+            item['input'], max_length=self.max_length, padding="max_length", truncation=True, return_tensors="pt"
+        )
+        targets = self.tokenizer(
+            item['target'], max_length=self.max_length, padding="max_length", truncation=True, return_tensors="pt"
+        )
+        return {
+            "input_ids": inputs["input_ids"].squeeze(),
+            "attention_mask": inputs["attention_mask"].squeeze(),
+            "labels": targets["input_ids"].squeeze(),
+        }
+
+
+model_name = "t5-small"  # 可选择更大的模型如 t5-base 或 t5-large
+model = T5ForConditionalGeneration.from_pretrained(model_name)
+tokenizer = T5Tokenizer.from_pretrained(model_name)
+
+
+
+data = load_data_from_db()
+formatted_data = format_data(data)
+
+train_data, val_data = train_test_split(formatted_data, test_size=0.1, random_state=42)
+
+train_dataset = QuestionDataset(train_data, tokenizer)
+val_dataset = QuestionDataset(val_data, tokenizer)
+
+training_args = TrainingArguments(
+    output_dir="./results",
+    evaluation_strategy="epoch",
+    save_strategy="epoch",
+    per_device_train_batch_size=8,
+    per_device_eval_batch_size=8,
+    num_train_epochs=3,
+    weight_decay=0.01,
+    logging_dir="./logs",
+    save_total_limit=2,
+)
+
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=train_dataset,
+    eval_dataset=val_dataset,
+    tokenizer=tokenizer,
+)
+
+trainer.train()
+
+def generate_analysis(stem, options, answer, original):
+    input_text = f"题干: {stem} 选项: {options} 答案: {answer} 解析: {original}"
+    inputs = tokenizer(input_text, return_tensors="pt", max_length=512, truncation=True)
+    outputs = model.generate(**inputs)
+    return tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+
+# ==== 结束: trainmodel.py ====
+

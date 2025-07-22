@@ -1,0 +1,86 @@
+{
+    "info": {
+        "authc": {
+            "credentials": {
+                "token": "d341278b-e3f2-4e26-ab4e-cb16ed04d0e9"
+            },
+            "principal": {
+                "login": {
+                    "email": "3223016161@qq.com",
+                    "fullname": "袁川",
+                    "id": 61883486,
+                    "mobile": "18738218023",
+                    "organizationid": 0,
+                    "username": "Aurora690"
+                }
+            }
+        },
+        "authz": {
+            "permissions": [
+                "qbm.menu:masterdata:r",
+                "qbm.menu:masterdata:questiontype:r",
+                "qbm.menu:masterdata:difficulty:r",
+                "qbm.menu:masterdata:papertype:r",
+                "qbm.menu:masterdata:tag:r",
+                "qbm.menu:masterdata:area:r",
+                "qbm.menu:masterdata:tag-sync:r",
+                "qbm.menu:masterdata:exp-template:r",
+                "qbm.menu:masterdata:equation-template:r",
+                "qbm.menu:system:r",
+                "qbm.menu:system:log",
+                "qbm.menu:system:settings",
+                "qbm.menu:system:tasks",
+                "qbm.menu:system:fault-messages",
+                "qbm.menu:system:message-monitor",
+                "qbm.menu:system:cache",
+                "qbm.menu:system:filter-refine-tasks",
+                "qbm.menu:system:news-index",
+                "qbm.menu:system:release-log",
+                "qbm.menu:system:ops-tool",
+                "qbm.menu:system:ops-tool",
+                "qbm.menu:system:ops-tool",
+                "qbm.menu:users:r",
+                "qbm.menu:users:team:r",
+                "qbm.menu:users:user_list:r",
+                "qbm.menu:users:machine_account",
+                "qbm.menu:resource:paper_props",
+                "qbm.menu:resource:question_qml",
+                "qbm.menu:resolve:basic",
+                "qbm.menu:resource:paper_qml",
+                "qbm.menu:variant-question:u",
+                "qbm.menu:account_report:my_account_records",
+                "qbm.menu:account_report:r",
+                "qbm.menu:resource:question_props",
+                "qbm.menu:resource:r",
+                "qbm.menu:r",
+                "qbm.menu:variant-question:r",
+                "qbm.menu:variant-question:c",
+                "qbm.menu:resolve:r",
+                "qbm.menu:variant-question:d",
+                "qbm.menu:account_report:price_list",
+                "qbm.menu:feedback:r",
+                "qbm.menu:home:home_teacher",
+                "qbm.menu:split:r",
+                "qbm.menu:report:p2:all",
+                "qbm.menu:split:refine:r",
+                "qbm.menu:report:r",
+                "qbm.menu:report:p3:r",
+                "qbm.menu:split:refine:dup_check",
+                "qbm.menu:home:r",
+                "qbm.menu:feedback:my-feedbacks",
+                "qbm.menu:split:basic",
+                "qbm.menu:account_report:my_monthly_salary",
+                "qbm.menu:report:p3:all",
+                "qbm.menu:report:p2:r",
+                "qbm.data:3:20",
+                "qbm.data:4:35"
+            ],
+            "roles": [
+                "55ca50d584000",
+                "55ca513d24000",
+                "73b98b4ff6000",
+                "73b98ffe78000"
+            ]
+        }
+    }
+}

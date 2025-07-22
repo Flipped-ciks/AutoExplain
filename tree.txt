@@ -1,0 +1,64 @@
+xkwautosolve/
+├── README.md
+├── 学科网自动答题.md
+├── main.py
+├── data/                      # 原始数据、数据集文件
+│   ├── file_list.txt
+│   ├── permission.json
+│   └── task_log.txt
+├── utils/                     # 通用工具函数
+│   ├── count.py
+│   ├── inferCatlog.py
+│   ├── judgetype.py
+│   ├── structure.py
+│   ├── tempCodeRunnerFile.py
+│   └── mulutree.py
+├── auth/                      # 登录与权限
+│   ├── login.py
+│   └── login_qrcode.py
+├── dataset/                   # 数据采集/构造脚本
+│   ├── getdataset.py
+│   ├── getbornwithoutanswer.py
+│   └── hebing.py
+├── doubao/                    # 豆包模型调用模块（解析+复审）
+│   ├── doubao_blank.py
+│   ├── doubao_blank_review.py
+│   ├── doubao_choice.py
+│   ├── doubao_choice_review.py
+│   ├── doubao_judge.py
+│   ├── doubao_judge_review.py
+│   ├── doubao_short.py
+│   └── doubao_short_review.py
+├── gptapi/                    # GPT 模型调用
+│   ├── gptapi_blank.py
+│   ├── gptapi_choice.py
+│   ├── gptapi_judge.py
+│   └── gptapi_short.py
+├── getdetail/                 # 获取题目详情（含复审版）
+│   ├── getdetail_blank.py
+│   ├── getdetail_blank_review.py
+│   ├── getdetail_choice.py
+│   ├── getdetail_choice_review.py
+│   ├── getdetail_choice_withexplain.py
+│   ├── getdetail_judge.py
+│   ├── getdetail_judge_review.py
+│   ├── getdetail_short.py
+│   └── getdetail_short_review.py
+├── tagging/                   # 打标签/解析任务相关
+│   ├── copytag.py
+│   ├── maketag.py
+│   ├── puttag.py
+│   ├── prePointIds.py
+│   ├── pickque.py
+│   ├── pickque_review.py
+│   ├── querytask.py
+│   └── querytask_review.py
+├── submit/                    # 提交答案 / 打标签等操作
+│   ├── putanswer.py
+│   ├── submit.py
+│   └── submit_review.py
+├── train/                     # 模型训练相关
+│   └── trainmodel.py
+└── others/                    # 杂项文件（代码收集、临时）
+    ├── all_code.txt
+    └── output_examples.txt   # 可选：你可能会加上输出示例等
