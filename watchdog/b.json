@@ -1,0 +1,90 @@
+[
+    {
+        "action": "开始查重",
+        "actionType": "CHECK_DUPLICATION",
+        "createDate": "2025-08-07T10:23:05",
+        "id": 1160160363073765376,
+        "operator": "杨12345609",
+        "operatorId": 52651576,
+        "paperId": "3814611612278784",
+        "status0": "P2_4",
+        "status1": "P2_5"
+    },
+    {
+        "action": "完成拆解任务",
+        "actionType": "FINISH_SPLIT_TASK",
+        "createDate": "2025-08-07T10:23:03",
+        "id": 1160160355276554240,
+        "operator": "杨12345609",
+        "operatorId": 52651576,
+        "paperId": "3814611612278784",
+        "status0": "P2_1",
+        "status1": "P2_4"
+    },
+    {
+        "action": "给用户杨12345609派发了拆解任务（预定任务ID：1660822）",
+        "actionType": "ASSIGN_SPLIT_TASK",
+        "createDate": "2025-08-06T21:12:05",
+        "id": 1159961301435285504,
+        "operator": "system",
+        "operatorId": 0,
+        "paperId": "3814611612278784",
+        "status0": "P1_2",
+        "status1": "P2_1"
+    },
+    {
+        "action": "领取拆解任务",
+        "actionType": "PICK_SPLIT_TASK",
+        "createDate": "2025-08-06T21:12:05",
+        "id": 1159961301338816512,
+        "operator": "杨12345609",
+        "operatorId": 52651576,
+        "paperId": "3814611612278784",
+        "status0": "P1_2",
+        "status1": "P2_1"
+    },
+    {
+        "action": "自动调度创建拆解任务",
+        "actionType": "AUTO_SCHEDULE",
+        "createDate": "2025-08-06T21: 12: 05",
+        "id": 1159961300688699392,
+        "operator": "system",
+        "operatorId": 0,
+        "paperId": "3814611612278784",
+        "status0": "P1_1_1",
+        "status1": "P1_2"
+    },
+    {
+        "action": "试卷预查重:预查重成功，没发现疑似重复试卷",
+        "actionType": "PRE_DUP",
+        "createDate": "2025-08-06T21: 12: 04",
+        "id": 1159961295995273216,
+        "operator": "system",
+        "operatorId": 0,
+        "paperId": "3814611612278784",
+        "status0": "P1_1",
+        "status1": "P1_1_1"
+    },
+    {
+        "action": "试卷预查重：调用Papersplit进行预查重",
+        "actionType": "PRE_DUP",
+        "createDate": "2025-08-06T21: 10: 17",
+        "id": 1159960850883149824,
+        "operator": "system",
+        "operatorId": 0,
+        "paperId": "3814611612278784",
+        "status0": "P1_1",
+        "status1": "P1_1"
+    },
+    {
+        "action": "入库",
+        "actionType": "ENTERING",
+        "createDate": "2025-08-06T21: 10: 07",
+        "id": 1159960809082716160,
+        "operator": "system",
+        "operatorId": 0,
+        "paperId": "3814611612278784",
+        "status0": "P1_1",
+        "status1": "P1_1"
+    }
+]

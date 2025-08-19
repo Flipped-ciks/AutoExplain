@@ -1,0 +1,91 @@
+{
+    "info": {
+        "authc": {
+            "credentials": {
+                "token": "aff38221-0973-46f2-b708-6f614468daed"
+            },
+            "principal": {
+                "login": {
+                    "email": "3223016161@qq.com",
+                    "fullname": "袁川",
+                    "id": 61883486,
+                    "mobile": "18738218023",
+                    "organizationid": 0,
+                    "username": "Aurora690"
+                }
+            }
+        },
+        "authz": {
+            "permissions": [
+                "qbm.menu:account_report:paper_price_float_records",
+                "qbm.menu:account_report:account_balance",
+                "qbm.menu:account_report:all_monthly_salary",
+                "qbm.menu:account_report:course_cost",
+                "qbm.menu:account_report:all_account_records",
+                "qbm.menu:account_report:adjust_profit",
+                "qbm.menu:account_report:feedback_reward",
+                "qbm.menu:account_report:paper_cost:r",
+                "qbm.menu:report:total",
+                "qbm.menu:audit:p2",
+                "qbm.menu:audit:order",
+                "qbm.menu:audit:all-logs",
+                "qbm.menu:audit:p2-workloads",
+                "qbm.menu:audit:passrate",
+                "qbm.menu:search:question-by-id",
+                "qbm.menu:search:question-by-stem",
+                "qbm.menu:search:question-by-stem",
+                "qbm.menu:search:question-by-stem",
+                "qbm.menu:job_scheduler:r",
+                "qbm.menu:job_scheduler:accumulation",
+                "qbm.menu:job_scheduler:execution",
+                "qbm.menu:job_scheduler:paper-transform-overvi",
+                "qbm.menu:job_scheduler:p2overview",
+                "qbm.menu:job_scheduler:p3overview",
+                "qbm.menu:job_scheduler:task-booking-overview",
+                "qbm.menu:search:r",
+                "qbm.menu:resolve:basic",
+                "qbm.menu:resolve:r",
+                "qbm.menu:resource:paper_props",
+                "qbm.menu:audit:r",
+                "qbm.menu:resource:question_qml",
+                "qbm.menu:resource:paper_qml",
+                "qbm.menu:variant-question:u",
+                "qbm.menu:account_report:my_account_records",
+                "qbm.menu:account_report:r",
+                "qbm.menu:resource:question_props",
+                "qbm.menu:resource:r",
+                "qbm.menu:r",
+                "qbm.menu:variant-question:r",
+                "qbm.menu:variant-question:c",
+                "qbm.menu:variant-question:d",
+                "qbm.menu:account_report:price_list",
+                "qbm.menu:feedback:r",
+                "qbm.menu:home:home_teacher",
+                "qbm.menu:audit:p3:r",
+                "qbm.menu:split:r",
+                "qbm.menu:report:p2:all",
+                "qbm.menu:split:refine:r",
+                "qbm.menu:report:r",
+                "qbm.menu:audit:p3-workloads",
+                "qbm.menu:audit:p3:exp",
+                "qbm.menu:report:p3:r",
+                "qbm.menu:split:refine:dup_check",
+                "qbm.menu:home:r",
+                "qbm.menu:feedback:my-feedbacks",
+                "qbm.menu:split:basic",
+                "qbm.menu:account_report:my_monthly_salary",
+                "qbm.menu:report:p3:all",
+                "qbm.menu:report:p2:r",
+                "qbm.data:3:20",
+                "qbm.data:4:35"
+            ],
+            "roles": [
+                "55ca50d584000",
+                "audit-exp",
+                "55ca513d24000",
+                "73b98b4ff6000",
+                "73b98ffe78000"
+            ]
+        }
+    }
+}

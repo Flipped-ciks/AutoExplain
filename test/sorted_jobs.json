@@ -1,0 +1,2066 @@
+[
+  {
+    "id": 13031632,
+    "salary": "360-480k",
+    "position": "未来网络研究员",
+    "max_salary": 480
+  },
+  {
+    "id": 1070999,
+    "salary": "360-480k",
+    "position": "未来网络研究员",
+    "max_salary": 480
+  },
+  {
+    "id": 28295115,
+    "salary": "240-300k",
+    "position": "解决方案售前工程师",
+    "max_salary": 300
+  },
+  {
+    "id": 19279230,
+    "salary": "240-300k",
+    "position": "解决方案售前工程师",
+    "max_salary": 300
+  },
+  {
+    "id": 22822931,
+    "salary": "240-300k",
+    "position": "解决方案售前工程师",
+    "max_salary": 300
+  },
+  {
+    "id": 250453957,
+    "salary": "0-50k",
+    "position": "软件售前工程师-沙特",
+    "max_salary": 50
+  },
+  {
+    "id": 31053060,
+    "salary": "40-45k·14薪",
+    "position": "",
+    "max_salary": 45
+  },
+  {
+    "id": 171965860,
+    "salary": "0-45k·15薪",
+    "position": "算力网络智能化运维平台负责人",
+    "max_salary": 45
+  },
+  {
+    "id": 42963270,
+    "salary": "25-45k·15薪",
+    "position": "算力网络智能化运维平台负责人",
+    "max_salary": 45
+  },
+  {
+    "id": 181334503,
+    "salary": "0-45k·18薪",
+    "position": "AI平台与算法高级开发工程师",
+    "max_salary": 45
+  },
+  {
+    "id": 225878851,
+    "salary": "0-40k",
+    "position": "CTO技术总监",
+    "max_salary": 40
+  },
+  {
+    "id": 250725836,
+    "salary": "0-40k",
+    "position": "数据中心售前工程师-沙特/印尼",
+    "max_salary": 40
+  },
+  {
+    "id": 225377682,
+    "salary": "0-40k·15薪",
+    "position": "云计算架构师",
+    "max_salary": 40
+  },
+  {
+    "id": 21121065,
+    "salary": "35-40k·14薪",
+    "position": "基础算法研究员",
+    "max_salary": 40
+  },
+  {
+    "id": 274926771,
+    "salary": "25-35k",
+    "position": "AI研发工程师",
+    "max_salary": 35
+  },
+  {
+    "id": 214461839,
+    "salary": "0-35k·15薪",
+    "position": "基础算法研究员",
+    "max_salary": 35
+  },
+  {
+    "id": 91397167,
+    "salary": "25-35k",
+    "position": "通信网络产品专家",
+    "max_salary": 35
+  },
+  {
+    "id": 280735322,
+    "salary": "0-30k",
+    "position": "海外机电经理-印尼",
+    "max_salary": 30
+  },
+  {
+    "id": 263052065,
+    "salary": "0-30k",
+    "position": "IDC项目经理",
+    "max_salary": 30
+  },
+  {
+    "id": 273584930,
+    "salary": "0-30k",
+    "position": "海外财务经理-印尼",
+    "max_salary": 30
+  },
+  {
+    "id": 265980490,
+    "salary": "0-30k",
+    "position": "海外财务经理-印尼",
+    "max_salary": 30
+  },
+  {
+    "id": 242357357,
+    "salary": "0-30k",
+    "position": "海外电气设计-印尼",
+    "max_salary": 30
+  },
+  {
+    "id": 226234965,
+    "salary": "0-30k·15薪",
+    "position": "大客户销售经理",
+    "max_salary": 30
+  },
+  {
+    "id": 226139488,
+    "salary": "0-30k",
+    "position": "售前经理",
+    "max_salary": 30
+  },
+  {
+    "id": 226138968,
+    "salary": "0-30k",
+    "position": "客户经理",
+    "max_salary": 30
+  },
+  {
+    "id": 225308544,
+    "salary": "0-30k",
+    "position": "客户经理",
+    "max_salary": 30
+  },
+  {
+    "id": 76923988,
+    "salary": "18-30k",
+    "position": "大客户销售经理",
+    "max_salary": 30
+  },
+  {
+    "id": 67984317,
+    "salary": "15-30k",
+    "position": "客户经理",
+    "max_salary": 30
+  },
+  {
+    "id": 70112030,
+    "salary": "20-30k",
+    "position": "海外售前工程师",
+    "max_salary": 30
+  },
+  {
+    "id": 1396028,
+    "salary": "25-30k·14薪",
+    "position": "ai大数据工程师",
+    "max_salary": 30
+  },
+  {
+    "id": 5145464,
+    "salary": "18-30k·20薪",
+    "position": "区域销售经理",
+    "max_salary": 30
+  },
+  {
+    "id": 247933336,
+    "salary": "0-30k",
+    "position": "解决方案经理",
+    "max_salary": 30
+  },
+  {
+    "id": 73000610,
+    "salary": "15-30k",
+    "position": "售前工程师",
+    "max_salary": 30
+  },
+  {
+    "id": 132068830,
+    "salary": "18-30k",
+    "position": "算力网络高级技术专家",
+    "max_salary": 30
+  },
+  {
+    "id": 232900404,
+    "salary": "0-28k·14薪",
+    "position": "软件产品经理",
+    "max_salary": 28
+  },
+  {
+    "id": 8312950,
+    "salary": "15-26k·20薪",
+    "position": "销售经理",
+    "max_salary": 26
+  },
+  {
+    "id": 250158754,
+    "salary": "0-25k",
+    "position": "商务专员-印尼",
+    "max_salary": 25
+  },
+  {
+    "id": 226029869,
+    "salary": "0-25k",
+    "position": "运营商客户经理（广东）",
+    "max_salary": 25
+  },
+  {
+    "id": 225261412,
+    "salary": "0-25k",
+    "position": "运营商客户经理",
+    "max_salary": 25
+  },
+  {
+    "id": 225135514,
+    "salary": "0-25k·18薪",
+    "position": "销售经理/主管",
+    "max_salary": 25
+  },
+  {
+    "id": 180426084,
+    "salary": "0-25k",
+    "position": "暖通工程师",
+    "max_salary": 25
+  },
+  {
+    "id": 70330152,
+    "salary": "15-25k",
+    "position": "大客户销售经理",
+    "max_salary": 25
+  },
+  {
+    "id": 68906445,
+    "salary": "15-25k",
+    "position": "大客户销售经理",
+    "max_salary": 25
+  },
+  {
+    "id": 58926689,
+    "salary": "0-25k",
+    "position": "大数据业务应用售前工程师",
+    "max_salary": 25
+  },
+  {
+    "id": 55585081,
+    "salary": "18-25k",
+    "position": "大数据业务应用售前工程师",
+    "max_salary": 25
+  },
+  {
+    "id": 2834266,
+    "salary": "20-25k",
+    "position": "解决方案售前工程师",
+    "max_salary": 25
+  },
+  {
+    "id": 42964120,
+    "salary": "20-25k",
+    "position": "解决方案售前工程师",
+    "max_salary": 25
+  },
+  {
+    "id": 15008727,
+    "salary": "20-25k",
+    "position": "解决方案售前工程师",
+    "max_salary": 25
+  },
+  {
+    "id": 5644122,
+    "salary": "16-25k·20薪",
+    "position": "大客户销售",
+    "max_salary": 25
+  },
+  {
+    "id": 31810171,
+    "salary": "16-25k·20薪",
+    "position": "大客户销售",
+    "max_salary": 25
+  },
+  {
+    "id": 40154471,
+    "salary": "20-25k·14薪",
+    "position": "海外销售经理",
+    "max_salary": 25
+  },
+  {
+    "id": 24790089,
+    "salary": "16-25k·20薪",
+    "position": "大客户销售",
+    "max_salary": 25
+  },
+  {
+    "id": 12515782,
+    "salary": "15-25k",
+    "position": "高级java研发工程师",
+    "max_salary": 25
+  },
+  {
+    "id": 178586186,
+    "salary": "0-25k·14薪",
+    "position": "项目经理",
+    "max_salary": 25
+  },
+  {
+    "id": 132074829,
+    "salary": "15-25k",
+    "position": "通信项目经理",
+    "max_salary": 25
+  },
+  {
+    "id": 132074833,
+    "salary": "18-25k",
+    "position": "JAVA全栈开发人员",
+    "max_salary": 25
+  },
+  {
+    "id": 132068831,
+    "salary": "15-25k",
+    "position": "通信项目经理",
+    "max_salary": 25
+  },
+  {
+    "id": 111342353,
+    "salary": "18-25k",
+    "position": "JAVA全栈开发人员(浪潮天元通信信息系统有限公司)",
+    "max_salary": 25
+  },
+  {
+    "id": 71664102,
+    "salary": "12-24k",
+    "position": "大客户销售经理",
+    "max_salary": 24
+  },
+  {
+    "id": 42587816,
+    "salary": "12-24k",
+    "position": "售前",
+    "max_salary": 24
+  },
+  {
+    "id": 167951680,
+    "salary": "0-23k·15薪",
+    "position": "硬件产品售前经理",
+    "max_salary": 23
+  },
+  {
+    "id": 279694379,
+    "salary": "0-22k·14薪",
+    "position": "BSS产品经理",
+    "max_salary": 22
+  },
+  {
+    "id": 150354603,
+    "salary": "0-21k·13薪",
+    "position": "数据中心售前工程师  北京/济南/广州",
+    "max_salary": 21
+  },
+  {
+    "id": 255973544,
+    "salary": "15-20k",
+    "position": "数据中心售前工程师-沙特/印尼",
+    "max_salary": 20
+  },
+  {
+    "id": 255973171,
+    "salary": "15-20k",
+    "position": "软件售前工程师-沙特",
+    "max_salary": 20
+  },
+  {
+    "id": 245173049,
+    "salary": "0-20k",
+    "position": "大客户经理KA",
+    "max_salary": 20
+  },
+  {
+    "id": 250441997,
+    "salary": "0-20k",
+    "position": "海外采购工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 226029532,
+    "salary": "0-20k·13薪",
+    "position": "售前技术支持",
+    "max_salary": 20
+  },
+  {
+    "id": 225878811,
+    "salary": "0-20k·16薪",
+    "position": "销售经理/主管",
+    "max_salary": 20
+  },
+  {
+    "id": 225134921,
+    "salary": "0-20k·13薪",
+    "position": "售前技术支持",
+    "max_salary": 20
+  },
+  {
+    "id": 246577505,
+    "salary": "0-20k",
+    "position": "运营商客户经理-北京",
+    "max_salary": 20
+  },
+  {
+    "id": 221813476,
+    "salary": "0-20k",
+    "position": "暖通工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 259347021,
+    "salary": "0-20k",
+    "position": "暖通工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 228553423,
+    "salary": "0-20k",
+    "position": "暖通工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 220442256,
+    "salary": "0-20k",
+    "position": "售前经理",
+    "max_salary": 20
+  },
+  {
+    "id": 250453955,
+    "salary": "0-20k",
+    "position": "客户经理-沙特/印尼",
+    "max_salary": 20
+  },
+  {
+    "id": 167955644,
+    "salary": "0-20k",
+    "position": "暖通工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 149355709,
+    "salary": "0-20k",
+    "position": "售前经理",
+    "max_salary": 20
+  },
+  {
+    "id": 67291948,
+    "salary": "0-20k·14薪",
+    "position": "",
+    "max_salary": 20
+  },
+  {
+    "id": 58961302,
+    "salary": "0-20k·14薪",
+    "position": "WEB前端工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 56292090,
+    "salary": "13-20k",
+    "position": "大客户销售经理（运营商、互联网、大企业、金融）",
+    "max_salary": 20
+  },
+  {
+    "id": 43850587,
+    "salary": "15-20k",
+    "position": "通信项目经理",
+    "max_salary": 20
+  },
+  {
+    "id": 43344959,
+    "salary": "15-20k",
+    "position": "通信项目经理",
+    "max_salary": 20
+  },
+  {
+    "id": 42586212,
+    "salary": "12-20k",
+    "position": "java研发工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 42965856,
+    "salary": "15-20k",
+    "position": "通信项目经理",
+    "max_salary": 20
+  },
+  {
+    "id": 43349301,
+    "salary": "12-20k",
+    "position": "java研发工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 2758814,
+    "salary": "15-20k",
+    "position": "通信项目经理",
+    "max_salary": 20
+  },
+  {
+    "id": 35781482,
+    "salary": "12-20k",
+    "position": "java研发工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 39985856,
+    "salary": "12-20k·15薪",
+    "position": "售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 30945703,
+    "salary": "12-20k·14薪",
+    "position": "数据中心售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 14160591,
+    "salary": "12-20k·15薪",
+    "position": "售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 17682803,
+    "salary": "14-20k·15薪",
+    "position": "",
+    "max_salary": 20
+  },
+  {
+    "id": 1796456,
+    "salary": "12-20k·14薪",
+    "position": "数据中心售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 25543169,
+    "salary": "12-20k·15薪",
+    "position": "售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 28561666,
+    "salary": "12-20k·14薪",
+    "position": "数据中心售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 22014516,
+    "salary": "12-20k·15薪",
+    "position": "售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 27552291,
+    "salary": "13-20k·20薪",
+    "position": "区域销售经理",
+    "max_salary": 20
+  },
+  {
+    "id": 12932413,
+    "salary": "12-20k·15薪",
+    "position": "java开发工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 4252147,
+    "salary": "12-20k·15薪",
+    "position": "售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 32529123,
+    "salary": "12-20k·15薪",
+    "position": "java开发工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 15885172,
+    "salary": "12-20k·14薪",
+    "position": "数据中心售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 10277488,
+    "salary": "13-20k·20薪",
+    "position": "区域销售经理",
+    "max_salary": 20
+  },
+  {
+    "id": 26794532,
+    "salary": "12-20k·15薪",
+    "position": "售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 51260545,
+    "salary": "12-20k",
+    "position": "java研发工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 31765815,
+    "salary": "12-20k·15薪",
+    "position": "java开发工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 13989896,
+    "salary": "12-20k·14薪",
+    "position": "数据中心售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 26978625,
+    "salary": "16-20k·20薪",
+    "position": "大客户销售",
+    "max_salary": 20
+  },
+  {
+    "id": 23892742,
+    "salary": "12-20k·14薪",
+    "position": "售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 18155345,
+    "salary": "12-20k·14薪",
+    "position": "售前（智能化项目）",
+    "max_salary": 20
+  },
+  {
+    "id": 32480507,
+    "salary": "12-20k·15薪",
+    "position": "java开发工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 20522466,
+    "salary": "12-20k·14薪",
+    "position": "数据中心售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 19391499,
+    "salary": "12-20k·15薪",
+    "position": "java开发工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 2434281,
+    "salary": "12-20k·14薪",
+    "position": "机电项目经理",
+    "max_salary": 20
+  },
+  {
+    "id": 36098882,
+    "salary": "12-20k·14薪",
+    "position": "机电项目经理",
+    "max_salary": 20
+  },
+  {
+    "id": 4329039,
+    "salary": "12-20k·14薪",
+    "position": "机电项目经理",
+    "max_salary": 20
+  },
+  {
+    "id": 40108654,
+    "salary": "12-20k·15薪",
+    "position": "java开发工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 32933171,
+    "salary": "12-20k·15薪",
+    "position": "售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 26319153,
+    "salary": "15-20k·20薪",
+    "position": "大客户经理",
+    "max_salary": 20
+  },
+  {
+    "id": 18961363,
+    "salary": "12-20k·14薪",
+    "position": "数据中心售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 916866,
+    "salary": "12-20k·14薪",
+    "position": "机电项目经理",
+    "max_salary": 20
+  },
+  {
+    "id": 40629020,
+    "salary": "12-20k·14薪",
+    "position": "机电项目经理",
+    "max_salary": 20
+  },
+  {
+    "id": 21120758,
+    "salary": "12-20k·14薪",
+    "position": "机电项目经理",
+    "max_salary": 20
+  },
+  {
+    "id": 16208484,
+    "salary": "12-20k·15薪",
+    "position": "java开发工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 12158880,
+    "salary": "12-20k·14薪",
+    "position": "机电项目经理",
+    "max_salary": 20
+  },
+  {
+    "id": 8683792,
+    "salary": "12-20k·15薪",
+    "position": "售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 27128169,
+    "salary": "12-20k·15薪",
+    "position": "售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 15921730,
+    "salary": "12-20k·14薪",
+    "position": "机电项目经理",
+    "max_salary": 20
+  },
+  {
+    "id": 29539427,
+    "salary": "12-20k·14薪",
+    "position": "机电项目经理",
+    "max_salary": 20
+  },
+  {
+    "id": 19820890,
+    "salary": "12-20k·15薪",
+    "position": "售前工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 185340155,
+    "salary": "0-20k",
+    "position": "云安全集成工程师",
+    "max_salary": 20
+  },
+  {
+    "id": 179033710,
+    "salary": "0-20k",
+    "position": "数据治理",
+    "max_salary": 20
+  },
+  {
+    "id": 171273484,
+    "salary": "0-20k·14薪",
+    "position": "研发经理",
+    "max_salary": 20
+  },
+  {
+    "id": 108858211,
+    "salary": "11-20k",
+    "position": "通信业务专家",
+    "max_salary": 20
+  },
+  {
+    "id": 98531602,
+    "salary": "10-20k",
+    "position": "项目经理",
+    "max_salary": 20
+  },
+  {
+    "id": 225459810,
+    "salary": "0-19k·13薪",
+    "position": "销售经理",
+    "max_salary": 19
+  },
+  {
+    "id": 22767648,
+    "salary": "14-19k",
+    "position": "软件开发工程师",
+    "max_salary": 19
+  },
+  {
+    "id": 279475983,
+    "salary": "0-18k·15薪",
+    "position": "数据中心IT集成工程师",
+    "max_salary": 18
+  },
+  {
+    "id": 253822881,
+    "salary": "0-18k·20薪",
+    "position": "大客户经理",
+    "max_salary": 18
+  },
+  {
+    "id": 225134918,
+    "salary": "0-18k·15薪",
+    "position": "数据中心售前工程师",
+    "max_salary": 18
+  },
+  {
+    "id": 191789675,
+    "salary": "0-18k·15薪",
+    "position": "客户经理",
+    "max_salary": 18
+  },
+  {
+    "id": 181126352,
+    "salary": "0-18k·14薪",
+    "position": "运营商客户经理-南京",
+    "max_salary": 18
+  },
+  {
+    "id": 137587520,
+    "salary": "12-18k",
+    "position": "数据中心售前工程师",
+    "max_salary": 18
+  },
+  {
+    "id": 67291947,
+    "salary": "0-18k",
+    "position": "",
+    "max_salary": 18
+  },
+  {
+    "id": 67291950,
+    "salary": "0-18k·15薪",
+    "position": "",
+    "max_salary": 18
+  },
+  {
+    "id": 45787094,
+    "salary": "15-18k",
+    "position": "产品经理(外协)",
+    "max_salary": 18
+  },
+  {
+    "id": 25744545,
+    "salary": "12-18k",
+    "position": "机电工程师",
+    "max_salary": 18
+  },
+  {
+    "id": 9014502,
+    "salary": "12-18k",
+    "position": "机电工程师",
+    "max_salary": 18
+  },
+  {
+    "id": 34685307,
+    "salary": "12-18k·14薪",
+    "position": "项目经理",
+    "max_salary": 18
+  },
+  {
+    "id": 43343877,
+    "salary": "12-18k",
+    "position": "机电工程师",
+    "max_salary": 18
+  },
+  {
+    "id": 43865339,
+    "salary": "12-18k",
+    "position": "机电工程师",
+    "max_salary": 18
+  },
+  {
+    "id": 37933182,
+    "salary": "15-18k·14薪",
+    "position": "项目经理",
+    "max_salary": 18
+  },
+  {
+    "id": 21364715,
+    "salary": "15-18k·20薪",
+    "position": "大客户销售",
+    "max_salary": 18
+  },
+  {
+    "id": 6753613,
+    "salary": "15-18k",
+    "position": "大客户销售",
+    "max_salary": 18
+  },
+  {
+    "id": 214943434,
+    "salary": "0-18k",
+    "position": "解决方案经理",
+    "max_salary": 18
+  },
+  {
+    "id": 132058243,
+    "salary": "11-18k",
+    "position": "高级java开发工程师/技术专家(浪潮天元通信信息系统有限公司)",
+    "max_salary": 18
+  },
+  {
+    "id": 108858210,
+    "salary": "10-18k",
+    "position": "后台开发工程师",
+    "max_salary": 18
+  },
+  {
+    "id": 43351553,
+    "salary": "12-17k",
+    "position": "机电项目经理",
+    "max_salary": 17
+  },
+  {
+    "id": 42961420,
+    "salary": "12-17k",
+    "position": "机电项目经理",
+    "max_salary": 17
+  },
+  {
+    "id": 34152419,
+    "salary": "12-17k",
+    "position": "机电项目经理",
+    "max_salary": 17
+  },
+  {
+    "id": 13286414,
+    "salary": "13-17k·14薪",
+    "position": "海外售前工程师",
+    "max_salary": 17
+  },
+  {
+    "id": 35453616,
+    "salary": "13-17k",
+    "position": "云网集成售前",
+    "max_salary": 17
+  },
+  {
+    "id": 280749143,
+    "salary": "0-16k",
+    "position": "弱电/智能化工程师",
+    "max_salary": 16
+  },
+  {
+    "id": 275568526,
+    "salary": "0-16k",
+    "position": "弱电智能化工程项目经理",
+    "max_salary": 16
+  },
+  {
+    "id": 275568525,
+    "salary": "0-16k",
+    "position": "IT系统集成项目经理",
+    "max_salary": 16
+  },
+  {
+    "id": 263034434,
+    "salary": "0-16k",
+    "position": "数据中心售前工程师",
+    "max_salary": 16
+  },
+  {
+    "id": 261978025,
+    "salary": "0-16k",
+    "position": "数据中心售前工程师",
+    "max_salary": 16
+  },
+  {
+    "id": 249920457,
+    "salary": "0-16k·15薪",
+    "position": "软件开发工程师（Java方向）",
+    "max_salary": 16
+  },
+  {
+    "id": 226333692,
+    "salary": "0-16k·16薪",
+    "position": "销售经理",
+    "max_salary": 16
+  },
+  {
+    "id": 214462055,
+    "salary": "0-16k",
+    "position": "售前技术支持（base济南）",
+    "max_salary": 16
+  },
+  {
+    "id": 250725839,
+    "salary": "0-16k",
+    "position": "数据中心售前工程师（base 济南）",
+    "max_salary": 16
+  },
+  {
+    "id": 171271093,
+    "salary": "12-16k",
+    "position": "售前技术支持",
+    "max_salary": 16
+  },
+  {
+    "id": 67556662,
+    "salary": "0-16k·15薪",
+    "position": "",
+    "max_salary": 16
+  },
+  {
+    "id": 70111945,
+    "salary": "12-16k",
+    "position": "数据中心售前工程师",
+    "max_salary": 16
+  },
+  {
+    "id": 56509510,
+    "salary": "12-16k",
+    "position": "售前工程师",
+    "max_salary": 16
+  },
+  {
+    "id": 56509509,
+    "salary": "12-16k",
+    "position": "电气专业产品经理",
+    "max_salary": 16
+  },
+  {
+    "id": 67989343,
+    "salary": "15-16k",
+    "position": "销售经理",
+    "max_salary": 16
+  },
+  {
+    "id": 11182632,
+    "salary": "12-16k·20薪",
+    "position": "销售经理",
+    "max_salary": 16
+  },
+  {
+    "id": 12570451,
+    "salary": "12-16k·20薪",
+    "position": "销售经理",
+    "max_salary": 16
+  },
+  {
+    "id": 129508311,
+    "salary": "10-16k",
+    "position": "移动互联网中高级研发工程师（外包岗位）",
+    "max_salary": 16
+  },
+  {
+    "id": 82106978,
+    "salary": "10-16k",
+    "position": "测试工程师-外包岗位",
+    "max_salary": 16
+  },
+  {
+    "id": 279475990,
+    "salary": "0-15k·15薪",
+    "position": "产品经理",
+    "max_salary": 15
+  },
+  {
+    "id": 274538670,
+    "salary": "0-15k·14薪",
+    "position": "培训经理",
+    "max_salary": 15
+  },
+  {
+    "id": 266197468,
+    "salary": "0-15k",
+    "position": "海外HRBP",
+    "max_salary": 15
+  },
+  {
+    "id": 225134917,
+    "salary": "0-15k·15薪",
+    "position": "电气专业产品经理",
+    "max_salary": 15
+  },
+  {
+    "id": 225134916,
+    "salary": "0-15k·14薪",
+    "position": "数据中心产品售前",
+    "max_salary": 15
+  },
+  {
+    "id": 74038218,
+    "salary": "0-15k·14薪",
+    "position": "售前工程师",
+    "max_salary": 15
+  },
+  {
+    "id": 67291949,
+    "salary": "0-15k·15薪",
+    "position": "",
+    "max_salary": 15
+  },
+  {
+    "id": 48136547,
+    "salary": "14-15k",
+    "position": "数据中心建设项目经理（北京、济南）",
+    "max_salary": 15
+  },
+  {
+    "id": 32908080,
+    "salary": "12-15k·15薪",
+    "position": "",
+    "max_salary": 15
+  },
+  {
+    "id": 73000609,
+    "salary": "10-15k",
+    "position": "售前工程师",
+    "max_salary": 15
+  },
+  {
+    "id": 179540754,
+    "salary": "0-15k",
+    "position": "web前端开发师",
+    "max_salary": 15
+  },
+  {
+    "id": 111342352,
+    "salary": "10-15k",
+    "position": "dba数据库工程师(浪潮天元通信信息系统有限公司)",
+    "max_salary": 15
+  },
+  {
+    "id": 108858205,
+    "salary": "10-15k",
+    "position": "大数据开发工程师",
+    "max_salary": 15
+  },
+  {
+    "id": 108858202,
+    "salary": "10-15k",
+    "position": "ORACLE DBA、系统管理员",
+    "max_salary": 15
+  },
+  {
+    "id": 98525853,
+    "salary": "8-15k",
+    "position": "技术经理",
+    "max_salary": 15
+  },
+  {
+    "id": 82122938,
+    "salary": "8-15k",
+    "position": "运维工程师",
+    "max_salary": 15
+  },
+  {
+    "id": 129486321,
+    "salary": "8-15k",
+    "position": "数据库开发工程师（外协岗位）",
+    "max_salary": 15
+  },
+  {
+    "id": 129508313,
+    "salary": "10-15k",
+    "position": "售前咨询师",
+    "max_salary": 15
+  },
+  {
+    "id": 129508309,
+    "salary": "10-15k",
+    "position": "售前咨询师",
+    "max_salary": 15
+  },
+  {
+    "id": 129508305,
+    "salary": "10-15k",
+    "position": "售前咨询师",
+    "max_salary": 15
+  },
+  {
+    "id": 82116567,
+    "salary": "10-15k",
+    "position": "项目经理",
+    "max_salary": 15
+  },
+  {
+    "id": 106344277,
+    "salary": "8-15k",
+    "position": "技术经理",
+    "max_salary": 15
+  },
+  {
+    "id": 106344276,
+    "salary": "8-15k",
+    "position": "运维工程师",
+    "max_salary": 15
+  },
+  {
+    "id": 82106976,
+    "salary": "10-15k",
+    "position": "项目经理",
+    "max_salary": 15
+  },
+  {
+    "id": 106355491,
+    "salary": "8-15k",
+    "position": "java开发工程师",
+    "max_salary": 15
+  },
+  {
+    "id": 106355495,
+    "salary": "10-15k",
+    "position": "软件研发工程师（JAVA)",
+    "max_salary": 15
+  },
+  {
+    "id": 106355492,
+    "salary": "10-15k",
+    "position": "软件测试工程师",
+    "max_salary": 15
+  },
+  {
+    "id": 82122942,
+    "salary": "7-14k",
+    "position": "售前经理",
+    "max_salary": 14
+  },
+  {
+    "id": 127069490,
+    "salary": "7-14k",
+    "position": "售前经理",
+    "max_salary": 14
+  },
+  {
+    "id": 276028418,
+    "salary": "7-13k",
+    "position": "数据中心项目经理",
+    "max_salary": 13
+  },
+  {
+    "id": 239168962,
+    "salary": "0-13k",
+    "position": "培训专员",
+    "max_salary": 13
+  },
+  {
+    "id": 236165507,
+    "salary": "7-13k",
+    "position": "数据中心项目经理",
+    "max_salary": 13
+  },
+  {
+    "id": 228959253,
+    "salary": "7-13k",
+    "position": "数据中心项目经理",
+    "max_salary": 13
+  },
+  {
+    "id": 215305397,
+    "salary": "0-13k",
+    "position": "行业解决方案",
+    "max_salary": 13
+  },
+  {
+    "id": 163850013,
+    "salary": "7-13k",
+    "position": "数据中心项目经理",
+    "max_salary": 13
+  },
+  {
+    "id": 43862538,
+    "salary": "8-13k",
+    "position": "系统集成项目经理",
+    "max_salary": 13
+  },
+  {
+    "id": 43345790,
+    "salary": "8-13k",
+    "position": "系统集成项目经理",
+    "max_salary": 13
+  },
+  {
+    "id": 35616325,
+    "salary": "8-13k",
+    "position": "系统集成项目经理",
+    "max_salary": 13
+  },
+  {
+    "id": 20690620,
+    "salary": "8-13k",
+    "position": "系统集成项目经理",
+    "max_salary": 13
+  },
+  {
+    "id": 7445082,
+    "salary": "8-13k",
+    "position": "高级大数据开发工程师",
+    "max_salary": 13
+  },
+  {
+    "id": 180425587,
+    "salary": "0-13k",
+    "position": "网络集成运维工程师",
+    "max_salary": 13
+  },
+  {
+    "id": 129524834,
+    "salary": "8-13k",
+    "position": "项目经理PM",
+    "max_salary": 13
+  },
+  {
+    "id": 108858220,
+    "salary": "8-13k",
+    "position": "数据开发工程师",
+    "max_salary": 13
+  },
+  {
+    "id": 83544612,
+    "salary": "8-13k",
+    "position": "项目经理PM",
+    "max_salary": 13
+  },
+  {
+    "id": 274659317,
+    "salary": "0-12k·16薪",
+    "position": "企业党建",
+    "max_salary": 12
+  },
+  {
+    "id": 263051980,
+    "salary": "0-12k",
+    "position": "售前工程师（25届）",
+    "max_salary": 12
+  },
+  {
+    "id": 257689994,
+    "salary": "0-12k",
+    "position": "数据中心运维工程师",
+    "max_salary": 12
+  },
+  {
+    "id": 250158756,
+    "salary": "0-12k",
+    "position": "智能化工程师",
+    "max_salary": 12
+  },
+  {
+    "id": 225136176,
+    "salary": "0-12k",
+    "position": "人力薪酬专员",
+    "max_salary": 12
+  },
+  {
+    "id": 58926688,
+    "salary": "0-12k",
+    "position": "人事行政综合专员",
+    "max_salary": 12
+  },
+  {
+    "id": 30031711,
+    "salary": "11-12k·14薪",
+    "position": "招聘",
+    "max_salary": 12
+  },
+  {
+    "id": 84897500,
+    "salary": "8-12k",
+    "position": "售前工程师(浪潮天元通信信息系统有限公司)",
+    "max_salary": 12
+  },
+  {
+    "id": 108858216,
+    "salary": "11-12k",
+    "position": "大数据项目经理",
+    "max_salary": 12
+  },
+  {
+    "id": 127081364,
+    "salary": "7-12k",
+    "position": "C++开发工程师",
+    "max_salary": 12
+  },
+  {
+    "id": 53874143,
+    "salary": "5-10k",
+    "position": "网络安全运维工程师",
+    "max_salary": 10
+  },
+  {
+    "id": 108858209,
+    "salary": "8-10k",
+    "position": "售前技术经理",
+    "max_salary": 10
+  },
+  {
+    "id": 108858212,
+    "salary": "5-10k",
+    "position": "运维工程师",
+    "max_salary": 10
+  },
+  {
+    "id": 108846655,
+    "salary": "5-10k",
+    "position": "区域销售经理/主管",
+    "max_salary": 10
+  },
+  {
+    "id": 127081362,
+    "salary": "8-10k",
+    "position": "web前端开发工程师-外包岗位",
+    "max_salary": 10
+  },
+  {
+    "id": 106355489,
+    "salary": "8-10k",
+    "position": "项目经理",
+    "max_salary": 10
+  },
+  {
+    "id": 42226584,
+    "salary": "5-9k",
+    "position": "基线运维工程师",
+    "max_salary": 9
+  },
+  {
+    "id": 46658003,
+    "salary": "6-9k",
+    "position": "webgis研发工程师",
+    "max_salary": 9
+  },
+  {
+    "id": 19651399,
+    "salary": "6-9k",
+    "position": "webgis研发工程师",
+    "max_salary": 9
+  },
+  {
+    "id": 11736113,
+    "salary": "8-9k",
+    "position": "交付管理",
+    "max_salary": 9
+  },
+  {
+    "id": 190949336,
+    "salary": "0-8k",
+    "position": "IT项目专员",
+    "max_salary": 8
+  },
+  {
+    "id": 147755214,
+    "salary": "0-8k",
+    "position": "",
+    "max_salary": 8
+  },
+  {
+    "id": 111342357,
+    "salary": "5-8k",
+    "position": "java研发工程师(浪潮天元通信信息系统有限公司)",
+    "max_salary": 8
+  },
+  {
+    "id": 111342351,
+    "salary": "6-8k",
+    "position": "数据库开发工程师(浪潮天元通信信息系统有限公司)",
+    "max_salary": 8
+  },
+  {
+    "id": 111342355,
+    "salary": "4-8k",
+    "position": "运维工程师(浪潮天元通信信息系统有限公司)",
+    "max_salary": 8
+  },
+  {
+    "id": 108824904,
+    "salary": "6-8k",
+    "position": "销售助理",
+    "max_salary": 8
+  },
+  {
+    "id": 108819177,
+    "salary": "6-8k",
+    "position": "销售助理",
+    "max_salary": 8
+  },
+  {
+    "id": 108819176,
+    "salary": "6-8k",
+    "position": "销售助理",
+    "max_salary": 8
+  },
+  {
+    "id": 108819175,
+    "salary": "6-8k",
+    "position": "销售助理",
+    "max_salary": 8
+  },
+  {
+    "id": 108819174,
+    "salary": "6-8k",
+    "position": "销售助理",
+    "max_salary": 8
+  },
+  {
+    "id": 108819173,
+    "salary": "6-8k",
+    "position": "销售助理",
+    "max_salary": 8
+  },
+  {
+    "id": 106366600,
+    "salary": "6-8k",
+    "position": "行政专员",
+    "max_salary": 8
+  },
+  {
+    "id": 56508344,
+    "salary": "4-7k",
+    "position": "文档文员",
+    "max_salary": 7
+  },
+  {
+    "id": 53874082,
+    "salary": "4-7k",
+    "position": "文档文员",
+    "max_salary": 7
+  },
+  {
+    "id": 42226586,
+    "salary": "5-7k",
+    "position": "值班运维工程师",
+    "max_salary": 7
+  },
+  {
+    "id": 32562184,
+    "salary": "5-7k",
+    "position": "数据开发",
+    "max_salary": 7
+  },
+  {
+    "id": 7779955,
+    "salary": "5-7k",
+    "position": "数据开发",
+    "max_salary": 7
+  },
+  {
+    "id": 34378988,
+    "salary": "5-7k",
+    "position": "数据开发",
+    "max_salary": 7
+  },
+  {
+    "id": 11678361,
+    "salary": "5-7k",
+    "position": "数据开发",
+    "max_salary": 7
+  },
+  {
+    "id": 34899075,
+    "salary": "5-7k",
+    "position": "数据开发",
+    "max_salary": 7
+  },
+  {
+    "id": 20141369,
+    "salary": "5-7k",
+    "position": "数据开发",
+    "max_salary": 7
+  },
+  {
+    "id": 29039932,
+    "salary": "5-7k",
+    "position": "数据开发",
+    "max_salary": 7
+  },
+  {
+    "id": 9226906,
+    "salary": "5-7k",
+    "position": "数据开发",
+    "max_salary": 7
+  },
+  {
+    "id": 13147198,
+    "salary": "5-7k",
+    "position": "数据开发",
+    "max_salary": 7
+  },
+  {
+    "id": 22969364,
+    "salary": "5-7k",
+    "position": "数据开发",
+    "max_salary": 7
+  },
+  {
+    "id": 108858203,
+    "salary": "5-7k",
+    "position": "软件系统维护工程师",
+    "max_salary": 7
+  },
+  {
+    "id": 106366602,
+    "salary": "4-7k",
+    "position": "行政前台",
+    "max_salary": 7
+  },
+  {
+    "id": 250281067,
+    "salary": "0-6k",
+    "position": "it主管",
+    "max_salary": 6
+  },
+  {
+    "id": 36084927,
+    "salary": "5-6k",
+    "position": "it主管",
+    "max_salary": 6
+  },
+  {
+    "id": 24811760,
+    "salary": "5-6k",
+    "position": "it主管",
+    "max_salary": 6
+  },
+  {
+    "id": 9014785,
+    "salary": "5-6k",
+    "position": "it主管",
+    "max_salary": 6
+  },
+  {
+    "id": 177877,
+    "salary": "5-6k",
+    "position": "it主管",
+    "max_salary": 6
+  },
+  {
+    "id": 35647371,
+    "salary": "3-6k",
+    "position": "软件测试实习生",
+    "max_salary": 6
+  },
+  {
+    "id": 6543632,
+    "salary": "3-6k",
+    "position": "数据开发实习生",
+    "max_salary": 6
+  },
+  {
+    "id": 132063607,
+    "salary": "5-6k",
+    "position": "投标专员(浪潮天元通信信息系统有限公司)",
+    "max_salary": 6
+  },
+  {
+    "id": 108858214,
+    "salary": "5-6k",
+    "position": "系统运维工程师",
+    "max_salary": 6
+  },
+  {
+    "id": 98542834,
+    "salary": "5-6k",
+    "position": "软件运维工程师",
+    "max_salary": 6
+  },
+  {
+    "id": 22433373,
+    "salary": "3-5k",
+    "position": "实施运维实习生",
+    "max_salary": 5
+  },
+  {
+    "id": 39431252,
+    "salary": "3-5k",
+    "position": "实施助理",
+    "max_salary": 5
+  },
+  {
+    "id": 39076367,
+    "salary": "3-5k",
+    "position": "审计实习生",
+    "max_salary": 5
+  },
+  {
+    "id": 34620012,
+    "salary": "3-5k",
+    "position": "java开发实习生",
+    "max_salary": 5
+  },
+  {
+    "id": 31750931,
+    "salary": "3-5k",
+    "position": "实施运维实习生",
+    "max_salary": 5
+  },
+  {
+    "id": 108858207,
+    "salary": "4-5k",
+    "position": "Java开发工程师",
+    "max_salary": 5
+  },
+  {
+    "id": 213063853,
+    "salary": "3-4k",
+    "position": "java开发实习生",
+    "max_salary": 4
+  },
+  {
+    "id": 174463056,
+    "salary": "3-4k",
+    "position": "产品方案实习生",
+    "max_salary": 4
+  },
+  {
+    "id": 150353596,
+    "salary": "3-4k",
+    "position": "运营助理/专员",
+    "max_salary": 4
+  },
+  {
+    "id": 63899978,
+    "salary": "3-4k",
+    "position": "前端开发工程师实习生",
+    "max_salary": 4
+  },
+  {
+    "id": 15894608,
+    "salary": "3-4k",
+    "position": "需求分析岗",
+    "max_salary": 4
+  },
+  {
+    "id": 6840251,
+    "salary": "3-4k",
+    "position": "人工智能实习生",
+    "max_salary": 4
+  },
+  {
+    "id": 9744087,
+    "salary": "3-4k",
+    "position": "数据开发实习生",
+    "max_salary": 4
+  },
+  {
+    "id": 694988,
+    "salary": "3-4k",
+    "position": "财务软件产品经理",
+    "max_salary": 4
+  },
+  {
+    "id": 32426931,
+    "salary": "3-4k",
+    "position": "产品经理实习生",
+    "max_salary": 4
+  },
+  {
+    "id": 29622826,
+    "salary": "3-4k",
+    "position": "产品经理实习生",
+    "max_salary": 4
+  },
+  {
+    "id": 26974050,
+    "salary": "3-4k",
+    "position": "人力资源部实习生",
+    "max_salary": 4
+  },
+  {
+    "id": 33950693,
+    "salary": "3-4k",
+    "position": "专利、软著编写实习生",
+    "max_salary": 4
+  },
+  {
+    "id": 46658796,
+    "salary": "3-3k",
+    "position": "运维实习生",
+    "max_salary": 3
+  },
+  {
+    "id": 5923899,
+    "salary": "3-3k",
+    "position": "运维实习生",
+    "max_salary": 3
+  },
+  {
+    "id": 18215872,
+    "salary": "3-3k",
+    "position": "java开发实习生",
+    "max_salary": 3
+  },
+  {
+    "id": 18619337,
+    "salary": "2-3k",
+    "position": "产品经理实习生",
+    "max_salary": 3
+  },
+  {
+    "id": 111342356,
+    "salary": "2-3k",
+    "position": "售前实习生招聘(浪潮天元通信信息系统有限公司)",
+    "max_salary": 3
+  },
+  {
+    "id": 111342354,
+    "salary": "2-3k",
+    "position": "2021届开发实习生、维护实习生(浪潮天元通信信息系统有限公司)",
+    "max_salary": 3
+  },
+  {
+    "id": 108858218,
+    "salary": "2-3k",
+    "position": "JAVA研发实习生",
+    "max_salary": 3
+  },
+  {
+    "id": 108858206,
+    "salary": "1-3k",
+    "position": "软件实习生",
+    "max_salary": 3
+  },
+  {
+    "id": 108858213,
+    "salary": "2-3k",
+    "position": "运维实习生",
+    "max_salary": 3
+  },
+  {
+    "id": 108858215,
+    "salary": "2-3k",
+    "position": "数据开发实习生",
+    "max_salary": 3
+  },
+  {
+    "id": 108858208,
+    "salary": "2-3k",
+    "position": "web前端",
+    "max_salary": 3
+  },
+  {
+    "id": 108858217,
+    "salary": "1-2k",
+    "position": "软件维护实习生",
+    "max_salary": 2
+  },
+  {
+    "id": 276601843,
+    "salary": "",
+    "position": "项目实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 259564461,
+    "salary": "",
+    "position": "开发实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 258174659,
+    "salary": "",
+    "position": "培训实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 255972368,
+    "salary": "",
+    "position": "数据中心机房建设项目管理实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 255506342,
+    "salary": "",
+    "position": "培训实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 246681818,
+    "salary": "",
+    "position": "运维实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 235883931,
+    "salary": "",
+    "position": "运维实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 225952016,
+    "salary": "",
+    "position": "项目实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 225206258,
+    "salary": "",
+    "position": "项目实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 218225198,
+    "salary": "",
+    "position": "人力实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 209131823,
+    "salary": "",
+    "position": "党务实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 53916558,
+    "salary": "",
+    "position": "",
+    "max_salary": 0
+  },
+  {
+    "id": 56512904,
+    "salary": "",
+    "position": "机电项目管理实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 17747813,
+    "salary": "",
+    "position": "",
+    "max_salary": 0
+  },
+  {
+    "id": 2953656,
+    "salary": "",
+    "position": "",
+    "max_salary": 0
+  },
+  {
+    "id": 23902697,
+    "salary": "",
+    "position": "运维实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 9179706,
+    "salary": "",
+    "position": "WEB前端开发工程师",
+    "max_salary": 0
+  },
+  {
+    "id": 129508307,
+    "salary": "面议",
+    "position": "行政专员/助理",
+    "max_salary": 0
+  },
+  {
+    "id": 108846654,
+    "salary": "面议",
+    "position": "配件销售",
+    "max_salary": 0
+  },
+  {
+    "id": 129508312,
+    "salary": "面议",
+    "position": "java研发工程师",
+    "max_salary": 0
+  },
+  {
+    "id": 129508308,
+    "salary": "面议",
+    "position": "软件工程师（项目管理方向）",
+    "max_salary": 0
+  },
+  {
+    "id": 129508306,
+    "salary": "面议",
+    "position": "售前工程师",
+    "max_salary": 0
+  },
+  {
+    "id": 127069500,
+    "salary": "面议",
+    "position": "软件项目实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 127069499,
+    "salary": "面议",
+    "position": "软件研发工程师",
+    "max_salary": 0
+  },
+  {
+    "id": 127069498,
+    "salary": "面议",
+    "position": "通信行业服务器区域销售经理",
+    "max_salary": 0
+  },
+  {
+    "id": 127069493,
+    "salary": "面议",
+    "position": "金融行业区域销售经理",
+    "max_salary": 0
+  },
+  {
+    "id": 127069492,
+    "salary": "面议",
+    "position": "软件项目实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 129508310,
+    "salary": "面议",
+    "position": "服务器区域销售经理",
+    "max_salary": 0
+  },
+  {
+    "id": 127069497,
+    "salary": "面议",
+    "position": "软件研发实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 127069496,
+    "salary": "面议",
+    "position": "服务器区域销售经理",
+    "max_salary": 0
+  },
+  {
+    "id": 127069494,
+    "salary": "面议",
+    "position": "软件项目实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 127069495,
+    "salary": "面议",
+    "position": "软件项目实习生",
+    "max_salary": 0
+  },
+  {
+    "id": 127069501,
+    "salary": "面议",
+    "position": "区域销售经理-通信行业",
+    "max_salary": 0
+  }
+]

@@ -61,6 +61,7 @@ def pretag(qid, cookies, type):
 def main(qid, cookies, type):
     
     copytag.main(get_similar(qid, cookies), qid, cookies, type)
+    # copytag.main(3822852754227200, qid, cookies, type)
 
 def get_similar(qid, cookies):
     url = "https://qbm.xkw.com/console/questions/similar"

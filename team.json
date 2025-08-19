@@ -1,0 +1,30 @@
+{
+  "answer": "<ans><sq><an isop>3</an></sq></ans>",
+  "applicationId": "zxxk",
+  "bornWithExp": true,
+  "bornWithoutAnswer": false,
+  "courseId": 35,
+  "createDate": "2025-07-30T11:07:30",
+  "difficulty": 0.8500000000000001,
+  "explanation": "<exps><seg name=\"详解\"><p align=\"justify\"><span word-font=\"宋体\">本题考查字符编码相关内容。</span><span word-font=\"Times New Roman\">A</span><span word-font=\"宋体\">选项，</span><span word-font=\"Times New Roman\">1</span><span word-font=\"宋体\">个汉字需要占用两个字节的存储空间，选项正确。</span><span word-font=\"Times New Roman\">B</span><span word-font=\"宋体\">选项，一个字节等于</span><span word-font=\"Times New Roman\">8</span><span word-font=\"宋体\">位二进制，</span><span word-font=\"Times New Roman\">2</span><span word-font=\"Times New Roman\"><sup>8</sup></span><span word-font=\"Times New Roman\">=256</span><span word-font=\"宋体\">，一个字节可以存放一个</span><span word-font=\"Times New Roman\">0</span><span word-font=\"宋体\">到</span><span word-font=\"Times New Roman\">255</span><span word-font=\"宋体\">之间的整数，选项正确。</span><span word-font=\"Times New Roman\">C</span><span word-font=\"宋体\">选项，</span><span word-font=\"Times New Roman\">1</span><span word-font=\"宋体\">个字节只能存放</span><span word-font=\"Times New Roman\">1</span><span word-font=\"宋体\">个英文字母，选项错误。</span><span word-font=\"Times New Roman\">D</span><span word-font=\"宋体\">选项，</span><span word-font=\"Times New Roman\">1</span><span word-font=\"宋体\">个字节可存放</span><span word-font=\"Times New Roman\">1</span><span word-font=\"宋体\">个标点符号，选项正确。故本题答案是</span><span word-font=\"Times New Roman\">C</span><span word-font=\"宋体\">选项。</span></p></seg></exps>",
+  "id": "3809360904429568",
+  "length": 0,
+  "media": 0,
+  "multiExplanation": false,
+  "newExplanation": true,
+  "paperId": "3808989298966528",
+  "publishDate": "2025-07-30T16:35:26",
+  "qmlUpdateDate": "2025-07-30T11:07:30",
+  "score": 0.0,
+  "similarity": 0.0,
+  "source": "人教/中图版(2019) 必修2 第1章 信息技术与社会",
+  "status": "P4",
+  "stem": "<stem><p align=\"left\"><span word-font=\"宋体\">下列描述中，不正确的是（</span><span word-font=\"Times New Roman\">   </span><span word-font=\"宋体\">）</span></p><og cols=\"2\"><op><span word-font=\"Times New Roman\">2</span><span word-font=\"宋体\">个字节可存放</span><span word-font=\"Times New Roman\">1</span><span word-font=\"宋体\">个汉字</span></op><op><span word-font=\"Times New Roman\">1</span><span word-font=\"宋体\">个字节可存放</span><span word-font=\"Times New Roman\">1</span><span word-font=\"宋体\">个</span><span word-font=\"Times New Roman\">0—255 </span><span word-font=\"宋体\">之间的整数</span></op><op><span word-font=\"Times New Roman\">1</span><span word-font=\"宋体\">个字节可存放</span><span word-font=\"Times New Roman\">1</span><span word-font=\"宋体\">个或</span><span word-font=\"Times New Roman\">2</span><span word-font=\"宋体\">个英文字母</span></op><op><span word-font=\"Times New Roman\">1</span><span word-font=\"宋体\">个字节可存放</span><span word-font=\"Times New Roman\">1</span><span word-font=\"宋体\">个标点符号</span></op></og></stem>",
+  "subCourse": 0,
+  "typeFeatureIds": [
+    "350101"
+  ],
+  "typeId": "350101",
+  "updateDate": "2025-07-30T16:35:26",
+  "year": 2024
+}

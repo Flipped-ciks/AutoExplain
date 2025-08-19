@@ -1,0 +1,134 @@
+[
+    {
+        "action": "生成发布版试卷(原因:试卷索引更新,用户:system)",
+        "actionType": "UPDATE",
+        "createDate": "2025-07-30T17:52:46",
+        "id": 1157374429177577472,
+        "operator": "system",
+        "operatorId": 0,
+        "paperId": "3808989298966528",
+        "status0": "P4_2",
+        "status1": "P4_2"
+    },
+    {
+        "action": "试卷发布",
+        "actionType": "PUBLISH",
+        "createDate": "2025-07-30T16:35:26",
+        "id": 1157354966554247168,
+        "operator": "system",
+        "operatorId": 0,
+        "paperId": "3808989298966528",
+        "status0": "P4_1",
+        "status1": "P4_2"
+    },
+    {
+        "action": "该卷所有试题解析完成 ，进入待发布状态",
+        "actionType": "PENDING",
+        "createDate": "2025-07-30T16: 35: 26",
+        "id": 1157354965585362944,
+        "operator": "system",
+        "operatorId": 0,
+        "paperId": "3808989298966528",
+        "status0": "P3_0",
+        "status1": "P4_1"
+    },
+    {
+        "action": "解析挂起",
+        "actionType": "ANALYSIS_HANG_UP",
+        "createDate": "2025-07-30T14: 20: 41",
+        "id": 1157321053001744384,
+        "operator": "xy04682",
+        "operatorId": 32937736,
+        "paperId": "3808989298966528",
+        "status0": "P2_6",
+        "status1": "P3_0"
+    },
+    {
+        "action": "拆解岗审核通过",
+        "actionType": "UPDATE",
+        "createDate": "2025-07-30T14: 20: 40",
+        "id": 1157321052708143104,
+        "operator": "xy04682",
+        "operatorId": 32937736,
+        "paperId": "3808989298966528",
+        "status0": "P2_6",
+        "status1": "P2_6"
+    },
+    {
+        "action": "受理抽审任务",
+        "actionType": "ACCEPT_AUDIT_TASK",
+        "createDate": "2025-07-30T14: 17: 27",
+        "id": 1157320243022921728,
+        "operator": "xy04682",
+        "operatorId": 32937736,
+        "paperId": "3808989298966528",
+        "status0": "P2_6",
+        "status1": "P2_6"
+    },
+    {
+        "action": "开始查重",
+        "actionType": "CHECK_DUPLICATION",
+        "createDate": "2025-07-30T11: 07: 30",
+        "id": 1157272440838029312,
+        "operator": "xkw_053525764",
+        "operatorId": 53525764,
+        "paperId": "3808989298966528",
+        "status0": "P2_4",
+        "status1": "P2_5"
+    },
+    {
+        "action": "完成拆解任务",
+        "actionType": "FINISH_SPLIT_TASK",
+        "createDate": "2025-07-30T11: 07: 30",
+        "id": 1157272440238243840,
+        "operator": "xkw_053525764",
+        "operatorId": 53525764,
+        "paperId": "3808989298966528",
+        "status0": "P2_1",
+        "status1": "P2_4"
+    },
+    {
+        "action": "领取拆解任务",
+        "actionType": "PICK_SPLIT_TASK",
+        "createDate": "2025-07-30T07: 28: 42",
+        "id": 1157217374840029184,
+        "operator": "xkw_053525764",
+        "operatorId": 53525764,
+        "paperId": "3808989298966528",
+        "status0": "P1_2",
+        "status1": "P2_1"
+    },
+    {
+        "action": "创建拆解任务",
+        "actionType": "CREATE_JOB",
+        "createDate": "2025-07-29T22: 52: 00",
+        "id": 1157087343820144640,
+        "operator": "许艳菲",
+        "operatorId": 27845931,
+        "paperId": "3808989298966528",
+        "status0": "P1_1_1",
+        "status1": "P1_2"
+    },
+    {
+        "action": "更新试卷属性",
+        "actionType": "UPDATE",
+        "createDate": "2025-07-29T22: 51: 50",
+        "id": 1157087300316823552,
+        "operator": "许艳菲",
+        "operatorId": 27845931,
+        "paperId": "3808989298966528",
+        "status0": "P1_1_1",
+        "status1": "P1_1_1"
+    },
+    {
+        "action": "手动拉取RBM试卷上传",
+        "actionType": "ENTERING",
+        "createDate": "2025-07-29T22: 31: 31",
+        "id": 1157082190744387584,
+        "operator": "许艳菲",
+        "operatorId": 27845931,
+        "paperId": "3808989298966528",
+        "status0": "P1_1",
+        "status1": "P1_1"
+    }
+]

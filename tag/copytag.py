@@ -22,8 +22,8 @@ def main(sour_qid, dest_qid, cookies, type):
         response = requests.get(url, cookies=cookies ,verify=certifi.where())
         json_dest = response.json()
 
-        url = f"https://qbm.xkw.com/console/question-aigc/ai-predict-kpoint?questionid={dest_qid}&repredict=true&toptypeid={(str(json_dest['courseId']) + type[:2])}"
-        res = requests.get(url, cookies=cookies)
+        predict_url = f"https://qbm.xkw.com/console/question-aigc/ai-predict-kpoint?questionid={dest_qid}&repredict=true&toptypeid={(str(json_dest['courseId']) + type[:2])}"
+        res = requests.get(predict_url, cookies=cookies)
 
         data = {}
         data['year'] = json_dest['year']                                                 # 年份由get请求获取
@@ -32,7 +32,9 @@ def main(sour_qid, dest_qid, cookies, type):
         data['difficulty'] = json_sour['difficulty']                                     # 难度默认值
         data['tagIds'] = ['1']                                                           # 试题分类默认值
         data['knowledgePointIds'] = res.json()['predictedPointIds']                      # 试题知识点根据学科网预测获取
+        # data['knowledgePointIds'] = [59025, 59055]                      # 试题知识点根据学科网预测获取
         data['catalogIds'] = json_sour['catalogIds']                                     # 章节目录根据学科网接口获取
+        # data['catalogIds'].append(285613)
         if(type == '0101'):
             data['typeFeatureIds'] = ['200101']
             data['typeFeatureNames'] = ['单选']
@@ -45,6 +47,4 @@ def main(sour_qid, dest_qid, cookies, type):
             data['difficulty'] = 0.8500000000000001
         else:
             data['difficulty'] = 0.6500000000000001
-        requests.put(url, cookies=cookies, json=data, verify=certifi.where())
-
-
+        res = requests.put(url, cookies=cookies, json=data, verify=certifi.where())
